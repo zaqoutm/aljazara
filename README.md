@@ -1,6 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+`comming soon...`
 
-## Getting Started
+# [Aljazara News Website](https://www.aljazara.com)
+
+News website, built in Next js
+
+<div align='center' style="border:0.3px solid #ddd; border-radius:12px; padding: 12px; margin-bottom:12px">
+  <img src="./public/ss-aljazara.png" alt="Aljazara homepage" style='border-radius:12px;border:1px solid #ddd;'/>
+</div>
+
+## 🚀 Getting Started
+
+```
+git clone https://github.com/zaqoutm/aljazara.git
+cd aljazara
+npm install
+npm run dev
+```
 
 First, run the development server:
 
@@ -14,23 +29,25 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next js 15
+- React 19
+- motion
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+we use static generation next ssg to build the site
 
-To learn more about Next.js, take a look at the following resources:
+- Directus CMS as backend
+- MySql database
+- Digital ocean Spaces (storage and backup)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📄 License MIT License © 2025
+📬 Contact Email: mo.zaqout@gmail.com
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div style="  text-align: center;">
+  Built with ❤️ by Mohammed
+</div>
