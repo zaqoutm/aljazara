@@ -16,13 +16,11 @@ export default function ArticleFeaturedCard({ article, borderTop }: Props) {
     >
       {/* iamge */}
       <div className={styles.imageContainer}>
-        <Image
-          src={article.photo ? article.photo.url : "/aljazara.svg"}
-          alt={article.photo && article.photo.alternativeText ? article.photo.alternativeText : "Picture text"}
-          width={200}
-          height={200}
-          priority={true}
-        />
+        {article.photo ? (
+          <Image src={article.photo.url ? article.photo.url : "/aljazara.svg"} alt={""} width={200} height={200} priority={true} />
+        ) : (
+          "No img"
+        )}
       </div>
       {/* article title */}
       <div className={styles.titleContainer}>

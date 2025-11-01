@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Almarai, Noto_Kufi_Arabic } from "next/font/google";
-import "./globals.css";
-import NavigationComponent from "../components/navigation/navigation";
-import FooterComponent from "../components/footer/footer";
-import SmallNavigation from "../components/smallNav/page";
 import NextTopLoader from "nextjs-toploader";
+import FooterComponent from "../components/footer/footer";
+import NavigationComponent from "../components/navigation/navigation";
+import SmallNavigation from "../components/smallNav/page";
+import "./globals.css";
 
 // Fonts
 // use variables in css

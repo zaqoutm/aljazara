@@ -1,22 +1,26 @@
-import styles from "./styles.module.css";
-import { SectionHeader } from "../../../components/sectionHeader/sectionHeader";
-import { getArticleByDocumentId, getArticlesBySection } from "../../../data/articlePageLoaders";
-import { StrapiResponse, StrapiResponseSingle } from "../../../interfaces/StrapiResponse";
-import Image from "next/image";
-import moment from "moment";
-import "moment/locale/ar";
 import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
+import moment from "moment";
+// import  "moment/locale/ar";
+import Image from "next/image";
 import Link from "next/link";
 import ListArticles from "../../../components/listArticles/page";
-import { getMixedLatestArticles } from "../../../data/sharedArticlesLoader";
 import ListMixedArticles from "../../../components/listMixedArticles/page";
+import { SectionHeader } from "../../../components/sectionHeader/sectionHeader";
+import { getArticleByDocumentId, getArticlesBySection } from "../../../data/articlePageLoaders";
+import { getMixedLatestArticles } from "../../../data/sharedArticlesLoader";
+import { StrapiResponse, StrapiResponseSingle } from "../../../interfaces/StrapiResponse";
+import styles from "./styles.module.css";
 
-moment.locale("ar");
+export async function generateStaticParams() {
+  const articles = await getArticlesBySection("sectionName");
+  return articles.data.map((article) => ({ documentId: article.documentId }));
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ documentId: string }> }) {
   const paramsResult = await params;
   const width_height = 21;
 
+  // other api calls
   // get the article by document id
   const articleByDocumentId: StrapiResponseSingle = await getArticleByDocumentId(paramsResult.documentId);
   const article = articleByDocumentId.data;

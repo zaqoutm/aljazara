@@ -1,33 +1,32 @@
-import styles from "./page.module.css";
-import * as service from "../data/homepageLoaders";
-import MainArticle from "../components/mainArticle/mainArticle";
 import * as motion from "motion/react-client";
-import ArticleFeaturedCard from "../components/articleFeaturedCard/page";
-import { StrapiResponse } from "../interfaces/StrapiResponse";
-import ListArticles from "../components/listArticles/page";
-import { HomePageSwitcher } from "../components/HomePageSwitcher/page";
 import { connection } from "next/server";
+import ArticleFeaturedCard from "../components/articleFeaturedCard/page";
+import { HomePageSwitcher } from "../components/HomePageSwitcher/page";
+import ListArticles from "../components/listArticles/page";
+import MainArticle from "../components/mainArticle/mainArticle";
+import * as service from "../data/homepageLoaders";
+import { StrapiResponse } from "../interfaces/StrapiResponse";
+import styles from "./page.module.css";
 
 export default async function Home() {
   await connection();
 
-  const mainArticlesResponse: StrapiResponse = await service.getMainArticle();
   const businessArticlesResponse: StrapiResponse = await service.getArticlesBySection("business");
   const techArticlesResponse: StrapiResponse = await service.getArticlesBySection("technology");
   const culturalArticlesResponse: StrapiResponse = await service.getArticlesBySection("cultural");
-
   const featuredArticlesRes: StrapiResponse = await service.getFeaturedArticles();
+  const mainArticlesResponse: StrapiResponse = await service.getMainArticle();
 
   return (
     <div className={styles.page}>
-      {/* switcher on tablet */}
+      {/* switcher on < tablet */}
       <div className={styles.switcher}>
-        <HomePageSwitcher
-          {...[mainArticlesResponse, businessArticlesResponse, techArticlesResponse, culturalArticlesResponse, featuredArticlesRes]}
-        />
+        <HomePageSwitcher {...mainArticlesResponse} />
+        {/* TODO: skeleton */}
       </div>
 
       <div className={styles.container}>
+        {/* Main articles */}
         <main className={styles.main}>
           <motion.div
             initial={{ y: -12, opacity: 0 }}
@@ -39,7 +38,7 @@ export default async function Home() {
             }}
           >
             {/* main article */}
-            <MainArticle {...mainArticlesResponse.data[0]} />
+            {mainArticlesResponse ? <MainArticle {...mainArticlesResponse.data[0]} /> : "Loading main article"}
           </motion.div>
 
           {/* business */}
@@ -67,12 +66,12 @@ export default async function Home() {
           }}
           className={styles.featuredSection}
         >
-          {/* <AdContainer width={250} height={600} /> */}
           <div className={styles.articlesList}>
-            {featuredArticlesRes.data.map((a, i) => (
-              <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />
-            ))}
+            {featuredArticlesRes
+              ? featuredArticlesRes.data.map((a, i) => <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />)
+              : "Loading featured articles ..."}
           </div>
+          {/* <AdContainer width={250} height={200} /> */}
           {/*  */}
         </motion.div>
       </div>

@@ -16,12 +16,11 @@ export default function ArticleCard({ article, borderTop }: Props) {
     >
       {/* iamge */}
       <div className={styles.imageContainer}>
-        <Image
+        <img
           src={article.photo ? article.photo.url : "/aljazara.svg"}
           alt={article.photo && article.photo.alternativeText ? article.photo.alternativeText : "Picture text"}
           width={200}
           height={200}
-          priority={true}
         />
       </div>
       {/* article title */}
@@ -29,7 +28,12 @@ export default function ArticleCard({ article, borderTop }: Props) {
         <h1>{article.title}</h1>
         {article.section ? (
           <div className={styles.titleContainerBadges}>
-            <p className={styles.badge}>{article.section?.titleAr}</p>
+            <div className={styles.tagsContainer}>
+              {article.tags?.map((tag, index) => (
+                <span key={index}>{tag} .. </span>
+              ))}
+            </div>
+            {/* <p className={styles.badge}>{article.section?.titleAr}</p> */}
             {article.isFeatured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
           </div>
         ) : (

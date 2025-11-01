@@ -1,13 +1,14 @@
 "use client";
-import { useState } from "react";
-import styles from "./styles.module.css";
-import MainArticle from "../mainArticle/mainArticle";
-import { StrapiResponse } from "../../interfaces/StrapiResponse";
-import ListArticles from "../listArticles/page";
-import ArticleFeaturedCard from "../articleFeaturedCard/page";
 import * as motion from "motion/react-client";
+import { useState } from "react";
+import { StrapiResponse } from "../../interfaces/StrapiResponse";
+import ArticleFeaturedCard from "../articleFeaturedCard/page";
+import ListArticles from "../listArticles/page";
+import MainArticle from "../mainArticle/mainArticle";
+import styles from "./styles.module.css";
 
-export function HomePageSwitcher(lists: StrapiResponse[]) {
+// TODO: list of different articles
+export function HomePageSwitcher(mainArticle: StrapiResponse) {
   const [active, setActive] = useState("news");
 
   function makeActive(tab: string) {
@@ -38,15 +39,15 @@ export function HomePageSwitcher(lists: StrapiResponse[]) {
               duration: 2,
             }}
           >
-            <MainArticle {...lists[0].data[0]} />
+            <MainArticle {...mainArticle.data[0]} />
           </motion.div>
-          <ListArticles listTitle='أخبار المال والأعمال' sectionURL='business' articlesList={lists[1]} />
-          <ListArticles listTitle='أخبار التكنولوجيا' sectionURL='technology' articlesList={lists[2]} />
-          <ListArticles listTitle='مقالات ثقافية' sectionURL='cultural' articlesList={lists[3]} />
+          <ListArticles listTitle='أخبار المال والأعمال' sectionURL='business' articlesList={mainArticle} />
+          <ListArticles listTitle='أخبار التكنولوجيا' sectionURL='technology' articlesList={mainArticle} />
+          <ListArticles listTitle='مقالات ثقافية' sectionURL='cultural' articlesList={mainArticle} />
         </div>
         {/* featured news */}
         <div className={`${styles.newsTab} ${active != "featured" && styles.hideMe}`}>
-          {lists[4].data.map((a, i) => (
+          {mainArticle.data.map((a, i) => (
             <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />
           ))}{" "}
         </div>

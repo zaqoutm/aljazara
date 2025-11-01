@@ -1,5 +1,5 @@
-import Section from "./Section";
 import { type BlocksContent } from "@strapi/blocks-react-renderer";
+import Section from "./Section";
 
 export interface Article {
   // provided by strapi
@@ -8,16 +8,17 @@ export interface Article {
   createdAt?: string;
   updatedAt?: string;
   publishedAt?: string;
+  title?: string;
+  content?: BlocksContent;
+  isFeatured?: boolean;
 
-  //
+  isMain?: boolean;
+
+  section?: Section;
   photo?: {
     alternativeText: string;
     caption: string;
     url: string;
   };
-  title?: string;
-  content?: BlocksContent;
-  section?: Section;
-  isFeatured?: boolean;
-  isMain?: boolean;
+  tags?: ["tag1", "tag2_test", "tag3"];
 }
