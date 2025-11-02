@@ -11,7 +11,7 @@ interface MainArticleProps {
 export default function MainArticle(props: MainArticleProps) {
   let article = props.article;
 
-  if (!article) return <h1>sadsad</h1>;
+  if (!article) return <h1>Main article 404!</h1>;
 
   return (
     <Link href={`/articles/${article.slug}`} className={`${styles.main} ${props.flexibleSize && styles.sizeFlix}`}>

@@ -48,7 +48,7 @@ export function HomePageSwitcher(props: SwitcherProps) {
               duration: 2,
             }}
           >
-            <MainArticle {...props.main} />
+            <MainArticle article={props.main} />
           </motion.div>
           <ListArticles listTitle='أخبار المال والأعمال' sectionURL='business' articlesList={props.business} />
           <ListArticles listTitle='أخبار التكنولوجيا' sectionURL='technology' articlesList={props.tech} />
