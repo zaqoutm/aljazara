@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -10,15 +10,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         // protocol: "https",
-        hostname: "*",
+        hostname: '*',
       },
       {
-        protocol: "https",
+        protocol: 'https',
         // hostname: "res.cloudinary.com",
-        hostname: "cdn.jsdelivr.net",
-        port: "",
-        pathname: "/**",
-        search: "",
+        hostname: 'cdn.jsdelivr.net',
+        port: '',
+        pathname: '/**',
+        search: '',
       },
     ],
   },

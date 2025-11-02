@@ -1,19 +1,13 @@
 const API = process.env.API_PATH;
 
-export const tryFetch = async (params: string, endpoitName: string = "endpointName") => {
-  if (process.env.NODE_ENV == "development") {
-    params = "/articles/";
-  }
-
+export const tryFetch = async (params: string, endpoitName: string = 'endpointName') => {
   try {
     const req = await fetch(API + params);
-    const json = await req.json();
-    return json;
+    return await req.json();
   } catch (error) {
-    console.error("trying to fetch ", API, params);
-    console.log(error);
+    console.error('trying to fetch ', API, params);
     return new Promise((resolve) => {
-      resolve({ data: [], meta: "" });
+      resolve({ data: [], meta: '' });
     });
   }
 };

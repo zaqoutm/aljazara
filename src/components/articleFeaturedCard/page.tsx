@@ -1,25 +1,25 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Article } from "../../interfaces/Aricle";
-import styles from "./styles.module.css";
+import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './styles.module.css';
 
 type Props = {
-  article: Article;
+  article: AljazaraArticle;
   borderTop: boolean;
 };
 
 export default function ArticleFeaturedCard({ article, borderTop }: Props) {
   return (
     <Link
-      href={`/articles/${article.documentId}`}
+      href={`/articles/${article.slug}`}
       className={`${styles.main} ${article.isFeatured && styles.featured} ${!borderTop && styles.noBorderTop}`}
     >
       {/* iamge */}
       <div className={styles.imageContainer}>
         {article.photo ? (
-          <Image src={article.photo.url ? article.photo.url : "/aljazara.svg"} alt={""} width={200} height={200} priority={true} />
+          <Image src={article.photo.url ? article.photo.url : '/aljazara.svg'} alt={''} width={200} height={200} priority={true} />
         ) : (
-          "No img"
+          'No img'
         )}
       </div>
       {/* article title */}

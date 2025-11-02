@@ -1,27 +1,36 @@
-import * as motion from "motion/react-client";
-import { connection } from "next/server";
-import ArticleFeaturedCard from "../components/articleFeaturedCard/page";
-import { HomePageSwitcher } from "../components/HomePageSwitcher/page";
-import ListArticles from "../components/listArticles/page";
-import MainArticle from "../components/mainArticle/mainArticle";
-import * as service from "../data/homepageLoaders";
-import { StrapiResponse } from "../interfaces/StrapiResponse";
-import styles from "./page.module.css";
+import ArticleFeaturedCard from '@/components/articleFeaturedCard/page';
+import { HomePageSwitcher } from '@/components/HomePageSwitcher/page';
+import ListArticles from '@/components/listArticles/page';
+import MainArticle from '@/components/mainArticle/mainArticle';
+import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
+import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
+import { loadArticlesBySection, loadMainArticle } from '@/serviecs/HomepageService';
+import * as motion from 'motion/react-client';
+import { connection } from 'next/server';
+import styles from './page.module.css';
 
 export default async function Home() {
   await connection();
 
-  const businessArticlesResponse: StrapiResponse = await service.getArticlesBySection("business");
-  const techArticlesResponse: StrapiResponse = await service.getArticlesBySection("technology");
-  const culturalArticlesResponse: StrapiResponse = await service.getArticlesBySection("cultural");
-  const featuredArticlesRes: StrapiResponse = await service.getFeaturedArticles();
-  const mainArticlesResponse: StrapiResponse = await service.getMainArticle();
+  const mainArticlesResponse: AljazaraArticle = await loadMainArticle();
+  //
+  const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('business');
+  const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('technology');
+  const culturalArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('cultural');
+  const featuredArticlesRes: AljazaraApiResponse = await loadArticlesBySection('');
 
   return (
     <div className={styles.page}>
       {/* switcher on < tablet */}
       <div className={styles.switcher}>
-        <HomePageSwitcher {...mainArticlesResponse} />
+        <HomePageSwitcher
+          business={businessArticlesResponse}
+          tech={techArticlesResponse}
+          cult={culturalArticlesResponse}
+          fratured={featuredArticlesRes}
+          main={mainArticlesResponse}
+        />
+
         {/* TODO: skeleton */}
       </div>
 
@@ -32,13 +41,13 @@ export default async function Home() {
             initial={{ y: -12, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
-              type: "spring",
+              type: 'spring',
               delay: 0.2,
               duration: 2,
             }}
           >
             {/* main article */}
-            {mainArticlesResponse ? <MainArticle {...mainArticlesResponse.data[0]} /> : "Loading main article"}
+            {mainArticlesResponse ? <MainArticle {...mainArticlesResponse} /> : 'Loading main article'}
           </motion.div>
 
           {/* business */}
@@ -61,7 +70,7 @@ export default async function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            type: "spring",
+            type: 'spring',
             duration: 2,
           }}
           className={styles.featuredSection}
@@ -69,7 +78,7 @@ export default async function Home() {
           <div className={styles.articlesList}>
             {featuredArticlesRes
               ? featuredArticlesRes.data.map((a, i) => <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />)
-              : "Loading featured articles ..."}
+              : 'Loading featured articles ...'}
           </div>
           {/* <AdContainer width={250} height={200} /> */}
           {/*  */}
