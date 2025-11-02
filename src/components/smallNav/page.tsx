@@ -1,9 +1,9 @@
-"use client";
-import Image from "next/image";
-import styles from "./styles.module.css";
-import Link from "next/link";
-import { useState } from "react";
-import * as motion from "motion/react-client";
+'use client';
+import * as motion from 'motion/react-client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import styles from './styles.module.css';
 // https://motion.dev/docs/react-quick-start
 
 export default function SmallNavigation() {
@@ -24,10 +24,9 @@ export default function SmallNavigation() {
   // }, 3000);
 
   const linksList = [
-    { title: "المال والأعمال", path: "business" },
-    { title: "التكنولوجيا", path: "technology" },
-    { title: "مقالات تثقيفية", path: "cultural" },
-    { title: "دليل المهاجر", path: "immigrant" },
+    { title: 'المال والأعمال', path: 'business' },
+    { title: 'التكنولوجيا', path: 'technology' },
+    { title: 'مقالات تثقيفية', path: 'cultural' },
     // { title: "", path: "" },
   ];
   const containerVariants = {
@@ -40,7 +39,7 @@ export default function SmallNavigation() {
     },
     open: {
       opacity: 1,
-      height: "auto",
+      height: 'auto',
       transition: {
         duration: 0.25,
       },
@@ -69,7 +68,7 @@ export default function SmallNavigation() {
       y: -50,
       opacity: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         duration: 0.3,
       },
     },
@@ -77,7 +76,7 @@ export default function SmallNavigation() {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: 'spring',
         duration: 0.9,
       },
     },
@@ -93,13 +92,13 @@ export default function SmallNavigation() {
             {/* <Image className={styles.navToggleImage} src='/burger-menu-black.svg' priority={true} alt='burger icon' width={20} height={20} /> */}
             <div className={`${styles.menuButtonBurger} `}></div>
           </button>
-          <Link href={"/"} onClick={closeMenu} className={styles.homePageLink}>
+          <Link href={'/'} onClick={closeMenu} className={styles.homePageLink}>
             <Image className={styles.navLogoImage} src='/aljazara-black.svg' priority={true} alt='aljazara logo' width={34} height={34} />
           </Link>
         </div>
 
         {/* links */}
-        <motion.div className={`${styles.drawerLinks}`} variants={containerVariants} initial={false} animate={isOpen ? "open" : "closed"}>
+        <motion.div className={`${styles.drawerLinks}`} variants={containerVariants} initial={false} animate={isOpen ? 'open' : 'closed'}>
           {/* kid */}
           <motion.ul variants={containerKid} className={`${styles.kid} ${!isOpen && styles.pointerNone}`}>
             {linksList.map((item, index) => (

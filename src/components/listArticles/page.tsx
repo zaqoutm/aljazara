@@ -14,7 +14,7 @@ export default function ListArticles({ listTitle, sectionURL, articlesList }: Pr
   return (
     <>
       <div className={styles.sectioTitle}>
-        <h1>{listTitle}</h1>
+        <Link href={`/${sectionURL}`}>{listTitle}</Link>
         <Image src={'/chevronLeft.svg'} alt='chevron icon' width={18} height={18} />
       </div>
       <div className={styles.articlesList}>

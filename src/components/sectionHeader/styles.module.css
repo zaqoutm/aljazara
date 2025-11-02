@@ -1,17 +1,22 @@
 .header {
-  border-top: 1px solid #0000004d;
   background-color: var(--nav-bg);
-  min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  padding: 0 16px;
+  padding: 21px;
+
+  background: linear-gradient(139deg, #102039, #a100ff, #102039) right top #102039 no-repeat;
+  background-size: 100% 1px;
 }
 
 @media screen and (max-width: 959px) {
   .header {
     text-align: center;
     padding: 21px 16px;
+    background: linear-gradient(139deg, #fff, var(--orange), #fff) right top #102039 no-repeat;
+    background-size: 100% 1px;
+    color: var(--foreground);
+    background-color: #fff;
   }
 }

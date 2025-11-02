@@ -42,3 +42,10 @@
   min-height: 250px;
   max-width: 250px;
 }
+
+@media screen and (max-width: 959px) {
+  .adContainer {
+    border: 1px solid var(--border-dark);
+    margin-inline: auto;
+  }
+}

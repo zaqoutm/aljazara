@@ -10,8 +10,7 @@
 }
 
 .main:hover h1 {
-  text-decoration: underline;
-  color: var(--orange);
+  color: var(--secondary-text);
 }
 
 .cardTop {
@@ -19,14 +18,16 @@
   align-items: center;
   gap: 16px;
 }
+
 .cardTop p {
   color: var(--secondary-text);
+  font-size: 13px;
 }
 .cardPunkt {
   width: 8px;
   height: 8px;
   border-radius: 44px;
-  background-color: var(--accent);
+  background-color: var(--orange);
 }
 .titleContainer {
   display: flex;

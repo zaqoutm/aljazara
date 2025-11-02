@@ -10,12 +10,16 @@ export function generateArticle(): AljazaraArticle {
     id: faker.number.int() + '',
     title: faker.lorem.sentence(),
     content: faker.lorem.paragraph(),
-    photo: { url: faker.image.urlLoremFlickr(), alternativeText: '', caption: '' },
+    photo: {
+      url: faker.image.urlLoremFlickr(),
+      alternativeText: faker.lorem.sentence(),
+      caption: faker.lorem.sentence(),
+    },
 
     section: {
       id: faker.number.int() + '',
-      title: faker.lorem.word() + '',
-      titleAr: faker.lorem.word() + '',
+      title: faker.helpers.arrayElement(['business', 'technology', 'cultural']) + '',
+      titleAr: faker.helpers.arrayElement(['تكنولوجيا', 'اقتصاد', 'ثقافة']) + '',
     },
     tags: faker.helpers.uniqueArray(faker.lorem.word, 3),
     createdAt: faker.date.anytime().toISOString() + '',
