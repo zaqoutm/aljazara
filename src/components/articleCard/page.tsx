@@ -17,7 +17,7 @@ export default function ArticleCard({ article, borderTop }: Props) {
       {/* iamge */}
       <div className={styles.imageContainer}>
         <img
-          src={article.photo ? article.photo.url : '/aljazara.svg'}
+          src={article.photo ? article.photo.url : '/aljazara-black.svg'}
           alt={article.photo && article.photo.alternativeText ? article.photo.alternativeText : 'Picture text'}
           width={200}
           height={200}
@@ -26,18 +26,15 @@ export default function ArticleCard({ article, borderTop }: Props) {
       {/* article title */}
       <div className={styles.titleContainer}>
         <h1>{article.title}</h1>
-        {article.section ? (
+        {article.section && (
           <div className={styles.titleContainerBadges}>
             <div className={styles.tagsContainer}>
+              {article.isFeatured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
               {article.tags?.map((tag, index) => (
-                <span key={index}>{tag} .. </span>
+                <span key={index}>{tag}</span>
               ))}
             </div>
-            {/* <p className={styles.badge}>{article.section?.titleAr}</p> */}
-            {article.isFeatured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
           </div>
-        ) : (
-          ''
         )}
       </div>
     </Link>

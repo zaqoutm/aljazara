@@ -1,7 +1,6 @@
 .main {
   border-top: 1px dotted var(--border-dark);
   display: flex;
-  min-height: 140px;
   max-width: 793px;
   overflow: hidden;
 }
@@ -10,25 +9,21 @@
   border-top: none;
 }
 
-.main:hover h1 {
-  text-decoration: underline;
-  color: var(--orange);
-}
-
 .imageContainer {
   padding: 16px 0;
   overflow: hidden;
-  max-width: 214px;
-  height: 134px;
+  width: 150px;
+  height: 110px;
   flex-shrink: 0;
+  border-left: 1px dashed var(--border);
 }
 
 .imageContainer img {
-  object-fit: cover;
+  border: 1px solid var(--border-dark);
   width: 100%;
-  height: auto;
-  filter: brightness(0.8);
-  border: 1px solid var(--border);
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .titleContainer {
@@ -49,6 +44,20 @@
 .titleContainerBadges img {
   width: auto;
   max-height: 18px;
+}
+
+.tagsContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tagsContainer span {
+  font-size: 12px;
+  padding: 0 13px;
+  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 5px;
 }
 
 .badge {

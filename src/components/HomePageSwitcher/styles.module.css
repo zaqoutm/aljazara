@@ -18,6 +18,12 @@
   padding: 8px 34px;
   border-radius: 30px;
 }
+.switcherButton:hover {
+  color: var(--secondary-text);
+}
+.switcherButton:active {
+  background-color: #fff;
+}
 
 .activeSwitch {
   background-color: #fff;

@@ -1,9 +1,0 @@
-.main {
-}
-
-/* <=Tablet */
-@media screen and (max-width: 959px) {
-  .main {
-    padding-top: 21px;
-  }
-}

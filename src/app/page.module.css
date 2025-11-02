@@ -42,8 +42,8 @@
   flex-grow: 1;
   height: fit-content;
   background-color: var(--fb);
-  border-right: 1px solid var(--border);
   overflow: hidden;
+  width: 100%;
 }
 
 /*  Responsivness  */

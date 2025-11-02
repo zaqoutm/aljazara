@@ -1,59 +1,64 @@
 .main {
+  min-height: 470px;
+  width: 690px;
   display: flex;
   flex-direction: column;
-  min-height: 240px;
-  max-width: 690px;
   margin-bottom: 21px;
   position: relative;
-  height: 100%;
-  box-shadow: 0px 0px 15px #0000000d;
+  box-shadow: 0 0 15px 2px #f2f2f2;
   overflow: hidden;
   border-radius: 8px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #fff;
+  padding: 8px;
+  border: 1px solid var(--border-dark);
 }
 
 .main:hover h1 {
   text-decoration: underline;
-  color: var(--orange);
 }
 
 .imageContainer {
-  padding: 5px;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  max-height: 500px;
+  min-height: 200px;
+  max-height: 380px;
   overflow: hidden;
+  background-color: #f2f2f2;
 }
 
 .imageContainer img {
-  border-radius: 8px;
-  object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
+/*  */
 .titleContainer {
-  min-width: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
   padding: 16px 21px;
   position: absolute;
-  bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 8px;
   justify-content: flex-start;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(13px);
+  border-radius: 8px;
 }
 
 .tagsContainer {
-  border: 1px;
   display: flex;
   gap: 5px;
 }
 
 .tagsContainer span {
-  padding: 0 5px;
+  font-size: 12px;
+  padding: 0 13px;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-bg);
   background-color: rgba(0, 0, 0, 0.02);
   border-radius: 5px;
 }
@@ -78,6 +83,7 @@
 @media screen and (max-width: 959px) {
   .main {
     max-width: 100%;
+    width: 100%;
   }
   .imageContainer {
     border-radius: 0;
@@ -90,6 +96,13 @@
     box-shadow: 0px 0px 0px;
     border: none;
     min-height: 400px;
+    padding: 0;
+  }
+  .main:hover {
+    border: none;
+  }
+  .main:hover h1 {
+    text-decoration: none;
   }
   .imageContainer {
     border: none;

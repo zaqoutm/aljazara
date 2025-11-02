@@ -18,8 +18,8 @@ export default function ListArticles({ listTitle, sectionURL, articlesList }: Pr
         <Image src={'/chevronLeft.svg'} alt='chevron icon' width={18} height={18} />
       </div>
       <div className={styles.articlesList}>
-        {articlesList.data.map((a) => (
-          <ArticleCard key={a.documentId} article={a} borderTop={true} />
+        {articlesList.data.map((a, i) => (
+          <ArticleCard key={a.documentId} article={a} borderTop={i > 0 ? true : false} />
         ))}
         <div className={styles.readMoreBtnContainer}>
           <Link className={styles.readMoreBtn} href={`/${sectionURL}`}>

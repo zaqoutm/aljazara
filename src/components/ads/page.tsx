@@ -1,4 +1,5 @@
-import styles from "./styles.module.css";
+import { fakerAR } from '@faker-js/faker';
+import styles from './styles.module.css';
 
 interface AdSize {
   width: number;
@@ -9,6 +10,7 @@ export default function AdContainer(size: AdSize) {
   return (
     <div className={styles.adContainer}>
       <p>إعلان</p>
+
       <div
         className={
           size.width == 300 && size.height == 600
@@ -19,10 +21,8 @@ export default function AdContainer(size: AdSize) {
               styles.ad_250_250
         }
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-        aspernatur ea a doloribus repellat quae laborum in commodi non, quo at
-        laboriosam minus doloremque rerum, fugit voluptatem id praesentium
-        voluptate.
+        <img src={fakerAR.image.avatar()} />
+        <p>{fakerAR.lorem.paragraph()}</p>
       </div>
     </div>
   );

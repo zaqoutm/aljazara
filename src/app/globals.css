@@ -18,7 +18,7 @@
   --green-light: #e6fead;
 
   --border: #f2f2f2;
-  --border-dark: #ccc;
+  --border-dark: #ddd;
 
   --nav-bg: #102039;
   --fb-color: #f2f4f7;
@@ -52,7 +52,7 @@ body {
 }
 
 body {
-  font-family: "Noto Kufi Arabic", sans-serif, Arial, Helvetica;
+  font-family: 'Noto Kufi Arabic', sans-serif, Arial, Helvetica;
   font-size: 16px;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
@@ -107,7 +107,16 @@ button {
   padding: 5px 16px;
   flex-shrink: 0;
   min-height: 39px;
-  font-family: "Noto Kufi Arabic", Arial, Helvetica, sans-serif;
+  font-family: 'Noto Kufi Arabic', Arial, Helvetica, sans-serif;
+}
+
+button:active {
+  transform: translateY(1px);
+  color: #102039;
+}
+
+button:focus {
+  outline-offset: 2px;
 }
 
 button:hover {
@@ -129,11 +138,11 @@ img {
 a {
   color: inherit;
   text-decoration: none;
-  font-family: "Noto Kufi Arabic", Arial, Helvetica, sans-serif;
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-size: 12px;
 }
-
+a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1;
+}
 /*  */
 /*  */
 /*  */
@@ -157,7 +166,7 @@ a {
   color: var(--warning);
   font-size: 55px;
   font-weight: 700;
-  font-family: "Noto Kufi Arabic", Arial, Helvetica, sans-serif;
+  font-family: 'Noto Kufi Arabic', Arial, Helvetica, sans-serif;
 }
 ._404_page_info_1 {
   font-weight: 500;
@@ -219,7 +228,7 @@ a {
   animation: pillerPushUp 4s linear infinite;
 }
 .loader:after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 10px;
   left: 0;

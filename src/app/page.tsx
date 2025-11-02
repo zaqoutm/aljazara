@@ -1,3 +1,4 @@
+import AdContainer from '@/components/ads/page';
 import ArticleFeaturedCard from '@/components/articleFeaturedCard/page';
 import { HomePageSwitcher } from '@/components/HomePageSwitcher/page';
 import ListArticles from '@/components/listArticles/page';
@@ -66,23 +67,15 @@ export default async function Home() {
 
         {/*  */}
         {/* Featured articles */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            type: 'spring',
-            duration: 2,
-          }}
-          className={styles.featuredSection}
-        >
+        <div className={styles.featuredSection}>
           <div className={styles.articlesList}>
             {featuredArticlesRes
               ? featuredArticlesRes.data.map((a, i) => <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />)
               : 'Loading featured articles ...'}
           </div>
-          {/* <AdContainer width={250} height={200} /> */}
+          <AdContainer width={250} height={100} />
           {/*  */}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
