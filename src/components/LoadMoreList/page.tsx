@@ -1,9 +1,9 @@
-"use client";
-import { StrapiResponse } from "../../interfaces/StrapiResponse";
-import { loadMoreArticles } from "../../data/ServerActions";
-import ArticleCard from "../articleCard/page";
-import styles from "./styles.module.css";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
+import { StrapiResponse } from '../../interfaces/StrapiResponse';
+import { loadMoreArticles } from '../../serviecs/ServerActions';
+import ArticleCard from '../articleCard/page';
+import styles from './styles.module.css';
 
 export default function LoadMoreList({ ...props }) {
   // articles already loaded by server
@@ -28,7 +28,7 @@ export default function LoadMoreList({ ...props }) {
     }
 
     // server action
-    console.log("loading ... ", props.sectionTitle);
+    console.log('loading ... ', props.sectionTitle);
 
     const x = await loadMoreArticles(props.sectionTitle, count);
 
@@ -55,7 +55,7 @@ export default function LoadMoreList({ ...props }) {
       {/*  */}
       <div className={styles.readMoreBtnContainer}>
         <button disabled={isLoading} onClick={handleLoadMore} className={styles.readMoreBtn}>
-          حمل المزيد {isLoading && " - انتظر.."}
+          حمل المزيد {isLoading && ' - انتظر..'}
         </button>
       </div>
     </div>

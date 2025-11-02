@@ -1,7 +1,7 @@
-import Link from "next/link";
-import ListMixedArticles from "../components/listMixedArticles/page";
-import { getMixedLatestArticles } from "../data/sharedArticlesLoader";
-import { StrapiResponse } from "../interfaces/StrapiResponse";
+import { getMixedLatestArticles } from '@/serviecs/SharedService';
+import Link from 'next/link';
+import ListMixedArticles from '../components/listMixedArticles/page';
+import { StrapiResponse } from '../interfaces/StrapiResponse';
 
 export default async function NotFoundPage() {
   const mixedArticles: StrapiResponse = await getMixedLatestArticles(10);

@@ -4,3 +4,8 @@ export interface AljazaraApiResponse {
   data: AljazaraArticle[];
   error: [];
 }
+
+export interface AljazaraApiSingleResponse {
+  data: AljazaraArticle[];
+  error: [];
+}

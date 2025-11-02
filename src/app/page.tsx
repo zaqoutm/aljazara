@@ -4,7 +4,7 @@ import ListArticles from '@/components/listArticles/page';
 import MainArticle from '@/components/mainArticle/mainArticle';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import { loadArticlesBySection, loadMainArticle } from '@/serviecs/HomepageService';
+import { loadArticlesBySection, loadFeaturedArticles, loadMainArticle } from '@/serviecs/HomepageService';
 import * as motion from 'motion/react-client';
 import { connection } from 'next/server';
 import styles from './page.module.css';
@@ -17,7 +17,7 @@ export default async function Home() {
   const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('business');
   const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('technology');
   const culturalArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('cultural');
-  const featuredArticlesRes: AljazaraApiResponse = await loadArticlesBySection('');
+  const featuredArticlesRes: AljazaraApiResponse = await loadFeaturedArticles();
 
   return (
     <div className={styles.page}>
