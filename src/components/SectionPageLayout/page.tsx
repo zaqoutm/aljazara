@@ -1,15 +1,15 @@
-import { getMixedLatestArticles } from "../../data/sharedArticlesLoader";
-import { StrapiResponse } from "../../interfaces/StrapiResponse";
-import ListMixedArticles from "../listMixedArticles/page";
-import MainArticle from "../mainArticle/mainArticle";
-import styles from "./styles.module.css";
-import LoadMoreList from "../LoadMoreList/page";
-import ArticleCard from "../articleCard/page";
-import { getArticlesPageBySection } from "../../data/sectionPageLoaders";
+import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
+import { getArticlesPageBySection } from '@/serviecs/SectionPageService';
+import { getMixedLatestArticles } from '@/serviecs/SharedService';
+import LoadMoreList from '../LoadMoreList/page';
+import ArticleCard from '../articleCard/page';
+import ListMixedArticles from '../listMixedArticles/page';
+import MainArticle from '../mainArticle/mainArticle';
+import styles from './styles.module.css';
 
 export async function SectionPageLayout({ ...props }) {
-  const articles: StrapiResponse = await getArticlesPageBySection(props.sectionTitle, 1, 3);
-  const mixedArticles: StrapiResponse = await getMixedLatestArticles(10);
+  const articles: AljazaraApiResponse = await getArticlesPageBySection(props.sectionTitle, 1, 3);
+  const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
     <div className={styles.container}>

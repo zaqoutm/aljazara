@@ -6,6 +6,6 @@ export interface AljazaraApiResponse {
 }
 
 export interface AljazaraApiSingleResponse {
-  data: AljazaraArticle[];
+  data: AljazaraArticle;
   error: [];
 }

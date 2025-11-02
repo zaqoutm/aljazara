@@ -1,18 +1,18 @@
-import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
-import moment from "moment";
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import moment from 'moment';
 // import  "moment/locale/ar";
-import Image from "next/image";
-import Link from "next/link";
-import ListArticles from "../../../components/listArticles/page";
-import ListMixedArticles from "../../../components/listMixedArticles/page";
-import { SectionHeader } from "../../../components/sectionHeader/sectionHeader";
-import { getArticleByDocumentId, getArticlesBySection } from "../../../data/articlePageLoaders";
-import { getMixedLatestArticles } from "../../../data/sharedArticlesLoader";
-import { StrapiResponse, StrapiResponseSingle } from "../../../interfaces/StrapiResponse";
-import styles from "./styles.module.css";
+import { AljazaraApiResponse, AljazaraApiSingleResponse } from '@/serviecs/AljazaraApiResponse';
+import { getArticleByDocumentId, getArticlesBySection } from '@/serviecs/ArticlePageService';
+import { getMixedLatestArticles } from '@/serviecs/SharedService';
+import Image from 'next/image';
+import Link from 'next/link';
+import ListArticles from '../../../components/listArticles/page';
+import ListMixedArticles from '../../../components/listMixedArticles/page';
+import { SectionHeader } from '../../../components/sectionHeader/sectionHeader';
+import styles from './styles.module.css';
 
 export async function generateStaticParams() {
-  const articles = await getArticlesBySection("sectionName");
+  const articles = await getArticlesBySection('sectionName');
   return articles.data.map((article) => ({ documentId: article.documentId }));
 }
 
@@ -22,16 +22,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ docume
 
   // other api calls
   // get the article by document id
-  const articleByDocumentId: StrapiResponseSingle = await getArticleByDocumentId(paramsResult.documentId);
+  const articleByDocumentId: AljazaraApiSingleResponse = await getArticleByDocumentId(paramsResult.documentId);
   const article = articleByDocumentId.data;
-  const content: BlocksContent = articleByDocumentId.data.content ?? [];
-  let relatedArticles: StrapiResponse = { data: [], meta: "meta" };
+  // const content: BlocksContent = articleByDocumentId.data.content ?? [];
+  const content = articleByDocumentId.data.content;
+  let relatedArticles: AljazaraApiResponse = { data: [], error: [] };
 
   // mixed articles
-  const mixedArticles: StrapiResponse = await getMixedLatestArticles(10);
+  const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   if (article.title) {
-    relatedArticles = await getArticlesBySection(article.section?.title ?? "");
+    relatedArticles = await getArticlesBySection(article.section?.title ?? '');
     // console.log(relatedArticles);
   }
 
@@ -40,7 +41,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ docume
 
   return (
     <div className={styles.main}>
-      {article.title ? <SectionHeader title={article.title} /> : ""}
+      {article.title ? <SectionHeader title={article.title} /> : ''}
 
       <div className={styles.container}>
         {/* Article view, share links, more from same section */}
@@ -48,8 +49,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ docume
           <div>
             <div className={styles.imageContainer}>
               <Image
-                src={article.photo ? article.photo.url : "/aljazara.svg"}
-                alt={article.photo && article.photo.alternativeText ? article.photo.alternativeText : "Picture text"}
+                src={article.photo ? article.photo.url : '/aljazara.svg'}
+                alt={article.photo && article.photo.alternativeText ? article.photo.alternativeText : 'Picture text'}
                 width={200}
                 height={200}
                 priority={true}
@@ -60,7 +61,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ docume
 
           <div className={styles.contentContainer}>
             <div className={styles.createdAtContainer}>
-              <p>{moment(article.createdAt).format("LLLL")}</p>
+              <p>{moment(article.createdAt).format('LLLL')}</p>
             </div>
 
             {/* ad */}
@@ -71,19 +72,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ docume
             </div>
 
             <div className={styles.socialLinks}>
-              <Link href={"#"}>
+              <Link href={'#'}>
                 <Image src='/fb-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
               </Link>
-              <Link href={"#"}>
+              <Link href={'#'}>
                 <Image src='/x-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
               </Link>
-              <Link href={"#"}>
+              <Link href={'#'}>
                 <Image src='/email-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
               </Link>
-              <Link href={"#"}>
+              <Link href={'#'}>
                 <Image src='/whatsapp-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
               </Link>
-              <Link href={"#"}>
+              <Link href={'#'}>
                 <Image src='/link-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
               </Link>
 
@@ -96,8 +97,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ docume
             <div className={styles.moreNewsSection}>
               {relatedArticles && (
                 <ListArticles
-                  listTitle={`المزيد من أخبار ال${article.section?.titleAr ?? ""}`}
-                  sectionURL={article.section?.title ?? "#"}
+                  listTitle={`المزيد من أخبار ال${article.section?.titleAr ?? ''}`}
+                  sectionURL={article.section?.title ?? '#'}
                   articlesList={relatedArticles}
                 />
               )}

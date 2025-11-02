@@ -1,10 +1,10 @@
+import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import Link from 'next/link';
 import ListMixedArticles from '../components/listMixedArticles/page';
-import { StrapiResponse } from '../interfaces/StrapiResponse';
 
 export default async function NotFoundPage() {
-  const mixedArticles: StrapiResponse = await getMixedLatestArticles(10);
+  const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
     <div className='_404_page'>

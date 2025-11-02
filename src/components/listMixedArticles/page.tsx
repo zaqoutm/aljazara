@@ -1,10 +1,10 @@
-import styles from "./styles.module.css";
-import { StrapiResponse } from "../../interfaces/StrapiResponse";
-import JustTitleArticleCard from "../justTitleCard/page";
+import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
+import JustTitleArticleCard from '../justTitleCard/page';
+import styles from './styles.module.css';
 
 interface Props {
   listTitle: string;
-  articlesList: StrapiResponse;
+  articlesList: AljazaraApiResponse;
 }
 
 export default function ListMixedArticles({ listTitle, articlesList }: Props) {

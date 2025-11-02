@@ -1,6 +1,6 @@
 'use client';
+import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { useState } from 'react';
-import { StrapiResponse } from '../../interfaces/StrapiResponse';
 import { loadMoreArticles } from '../../serviecs/ServerActions';
 import ArticleCard from '../articleCard/page';
 import styles from './styles.module.css';
@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 export default function LoadMoreList({ ...props }) {
   // articles already loaded by server
   // document is not ready on server !
-  const [upadtedList, setUpdatedList] = useState<StrapiResponse>();
+  const [upadtedList, setUpdatedList] = useState<AljazaraApiResponse>();
   const [isLoading, setIsLoading] = useState(false);
 
   /**

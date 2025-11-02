@@ -1,12 +1,11 @@
-import Link from "next/link";
-import { Article } from "../../interfaces/Aricle";
-import styles from "./styles.module.css";
-import moment from "moment";
-import "moment/locale/ar";
-moment.locale("ar");
+import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
+import moment from 'moment';
+import Link from 'next/link';
+import styles from './styles.module.css';
+moment.locale('ar');
 
 type Props = {
-  article: Article;
+  article: AljazaraArticle;
   borderTop: boolean;
 };
 
