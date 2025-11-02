@@ -3,9 +3,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles.module.css';
 
-export default function MainArticle(article: AljazaraArticle) {
+interface MainArticleProps {
+  article: AljazaraArticle;
+  flexibleSize?: boolean;
+}
+
+export default function MainArticle(props: MainArticleProps) {
+  let article = props.article;
+
+  if (!article) return <h1>sadsad</h1>;
+
   return (
-    <Link href={`/articles/${article.slug}`} className={styles.main}>
+    <Link href={`/articles/${article.slug}`} className={`${styles.main} ${props.flexibleSize && styles.sizeFlix}`}>
       {/* iamge */}
       <div className={styles.imageContainer}>
         <Image

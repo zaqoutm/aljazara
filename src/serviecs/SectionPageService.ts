@@ -6,3 +6,7 @@ export async function getArticlesPageBySection(sectionTitle: string, page: numbe
     `/articles?populate=*&sort[1]=publishedAt:desc&filters[section][title][$eq]=${sectionTitle}&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
   );
 }
+
+export async function getLast2MainArticlesPageBySection() {
+  return await tryFetch(`/articles`);
+}

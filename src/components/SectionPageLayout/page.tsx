@@ -1,29 +1,38 @@
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
-import { getArticlesPageBySection } from '@/serviecs/SectionPageService';
+import { getArticlesBySection } from '@/serviecs/ArticlePageService';
+import { getLast2MainArticlesPageBySection } from '@/serviecs/SectionPageService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import LoadMoreList from '../LoadMoreList/page';
+import AdContainer from '../ads/page';
 import ArticleCard from '../articleCard/page';
 import ListMixedArticles from '../listMixedArticles/page';
 import MainArticle from '../mainArticle/mainArticle';
 import styles from './styles.module.css';
 
-export async function SectionPageLayout({ ...props }) {
-  const articles: AljazaraApiResponse = await getArticlesPageBySection(props.sectionTitle, 1, 3);
+interface SectionPageLayoutProps {
+  sectionTitle: string;
+}
+
+export async function SectionPageLayout(props: SectionPageLayoutProps) {
+  const mainArticles: AljazaraApiResponse = await getLast2MainArticlesPageBySection(); //
+  const articles: AljazaraApiResponse = await getArticlesBySection(props.sectionTitle);
   const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
     <div className={styles.container}>
-      {/* 2 first articles */}
+      {/* latest 2 Main articles */}
       <div className={styles.topContent}>
-        {articles.data.map(
+        {mainArticles.data.map(
           (row, index) =>
+            // delete this
             index < 2 && (
-              <div key={index} className={styles.articleBig}>
-                <MainArticle {...row} />
+              <div key={index} className={styles.mainArticleContainer}>
+                <MainArticle article={row} flexibleSize />
               </div>
             )
         )}
       </div>
+
       {/* list + load more articles */}
       <div className={styles.bottomContent}>
         {/*  */}
@@ -32,14 +41,11 @@ export async function SectionPageLayout({ ...props }) {
         {/* show articles here and onclcik client component will be attached */}
         <div>
           <div className={styles.moreArticles}>
-            {articles?.data.map(
-              (row, index) =>
-                index > 1 && (
-                  <div key={index}>
-                    <ArticleCard article={row} borderTop={index > 2} />
-                  </div>
-                )
-            )}
+            {articles?.data.map((row, index) => (
+              <div key={index}>
+                <ArticleCard article={row} borderTop={index > 0} />
+              </div>
+            ))}
           </div>
           {articles.data.length > 2 && <LoadMoreList sectionTitle={props.sectionTitle} />}
         </div>
@@ -48,7 +54,9 @@ export async function SectionPageLayout({ ...props }) {
         {/*  */}
         {/* mixed articles */}
         <div className={styles.mixedArticles}>
+          <AdContainer size='250_250' />
           <ListMixedArticles listTitle='المزيد من المقالات' articlesList={mixedArticles} />
+          <AdContainer size='300_600' />
         </div>
       </div>
     </div>

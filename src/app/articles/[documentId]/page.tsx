@@ -146,7 +146,7 @@ export default async function ArticlePage({ params }: { params: any }) {
 
         <div className={styles.leftContainer}>
           {mixedArticles && <ListMixedArticles articlesList={mixedArticles} listTitle='المزيد من المقالات' />}
-          <AdContainer width={200} height={600} />
+          <AdContainer size='250_600' />
         </div>
       </div>
     </div>

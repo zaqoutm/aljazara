@@ -48,7 +48,7 @@ export default async function Home() {
             }}
           >
             {/* main article */}
-            {mainArticlesResponse ? <MainArticle {...mainArticlesResponse} /> : 'Loading main article'}
+            {mainArticlesResponse ? <MainArticle article={mainArticlesResponse} /> : 'Loading main article'}
           </motion.div>
 
           {/* business */}
@@ -73,7 +73,7 @@ export default async function Home() {
               ? featuredArticlesRes.data.map((a, i) => <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />)
               : 'Loading featured articles ...'}
           </div>
-          <AdContainer width={250} height={100} />
+          <AdContainer size='250_250' />
           {/*  */}
         </div>
       </div>
