@@ -52,12 +52,12 @@ export function HomePageSwitcher(props: SwitcherProps) {
           </motion.div>
           <ListArticles listTitle='أخبار المال والأعمال' sectionURL='business' articlesList={props.business} />
           <ListArticles listTitle='أخبار التكنولوجيا' sectionURL='technology' articlesList={props.tech} />
-          <ListArticles listTitle='مقالات ثقافية' sectionURL='cultural' articlesList={props.cult} />
+          <ListArticles listTitle='مقالات ثقافية' sectionURL='culture' articlesList={props.cult} />
         </div>
         {/* featured news */}
         <div className={`${styles.newsTab} ${active != 'featured' && styles.hideMe}`}>
           {props.fratured.data.map((a, i) => (
-            <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />
+            <ArticleFeaturedCard key={a.id} article={a} borderTop={i > 0} />
           ))}{' '}
         </div>
       </div>

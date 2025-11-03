@@ -26,7 +26,7 @@ export default function SmallNavigation() {
   const linksList = [
     { title: 'المال والأعمال', path: 'business' },
     { title: 'التكنولوجيا', path: 'technology' },
-    { title: 'مقالات تثقيفية', path: 'cultural' },
+    { title: 'مقالات تثقيفية', path: 'culture' },
     // { title: "", path: "" },
   ];
   const containerVariants = {

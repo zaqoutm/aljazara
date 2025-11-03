@@ -19,7 +19,7 @@ export default function ListArticles({ listTitle, sectionURL, articlesList }: Pr
       </div>
       <div className={styles.articlesList}>
         {articlesList.data.map((a, i) => (
-          <ArticleCard key={a.documentId} article={a} borderTop={i > 0 ? true : false} />
+          <ArticleCard key={a.id} article={a} borderTop={i > 0 ? true : false} />
         ))}
         <div className={styles.readMoreBtnContainer}>
           <Link className={styles.readMoreBtn} href={`/${sectionURL}`}>

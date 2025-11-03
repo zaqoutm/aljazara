@@ -7,6 +7,8 @@ interface ApiResponse {
 }
 
 export const tryFetch = async (path: string) => {
+  console.log(API);
+
   try {
     const res = await fetch(`${API}${path}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`Failed: ${res.status}`);
@@ -22,5 +24,5 @@ export const tryFetch = async (path: string) => {
 
 export async function getMixedLatestArticles(limit: number) {
   // return await tryFetch('/articles');
-  return await tryFetch(`/items/articles?fields=*,photo.*&limit=${limit}&sort=-date_created`);
+  return await tryFetch(`/articles?fields=*,photo.*&limit=${limit}&sort=-date_created`);
 }

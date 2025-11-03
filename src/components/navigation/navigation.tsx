@@ -43,7 +43,7 @@ export default function NavigationComponent() {
             {/* <Link href='/articles'>كل المقالات</Link> */}
             <Link href='/business'>المال والأعمال</Link>
             <Link href='/technology'>التكنولوجيا</Link>
-            <Link href='/cultural'>مقالات تثقيفية</Link>
+            <Link href='/culture'>مقالات تثقيفية</Link>
           </div>
         </motion.div>
       </div>

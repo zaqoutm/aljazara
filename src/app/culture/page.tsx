@@ -13,7 +13,7 @@ export default async function Page() {
   return (
     <div className={styles.main}>
       <SectionHeader title={'مقالات ثقافية'} />
-      <SectionPageLayout sectionTitle='cultural' />
+      <SectionPageLayout sectionTitle='culture' />
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default async function Home() {
   const mainArticlesResponse: AljazaraApiResponse = await loadMainArticle();
   const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('business');
   const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('technology');
-  const culturalArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('cultural');
+  const cultureArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('culture');
   const featuredArticlesRes: AljazaraApiResponse = await loadFeaturedArticles();
 
   return (
@@ -23,7 +23,7 @@ export default async function Home() {
         {/* <HomePageSwitcher
           business={businessArticlesResponse}
           tech={techArticlesResponse}
-          cult={culturalArticlesResponse}
+          cult={cultureArticlesResponse}
           fratured={featuredArticlesRes}
           main={mainArticlesResponse.data[0]}
         /> */}
@@ -55,9 +55,9 @@ export default async function Home() {
           <div className={styles.articlesSection}>
             <ListArticles listTitle='أخبار التكنولوجيا' sectionURL='technology' articlesList={techArticlesResponse} />
           </div>
-          {/* cultural */}
+          {/* culture */}
           <div className={styles.articlesSection}>
-            <ListArticles listTitle='مقالات ثقافية' sectionURL='cultural' articlesList={culturalArticlesResponse} />
+            <ListArticles listTitle='مقالات ثقافية' sectionURL='culture' articlesList={cultureArticlesResponse} />
           </div>
         </main>
 

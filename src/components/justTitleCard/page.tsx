@@ -12,7 +12,7 @@ type Props = {
 export default function JustTitleArticleCard({ article, borderTop }: Props) {
   return (
     <Link
-      href={`/articles/${article.documentId}`}
+      href={`/articles/${article.slug}`}
       className={`${styles.main} ${article.is_featured && styles.featured} ${!borderTop && styles.noBorderTop}`}
     >
       {/* article title */}
