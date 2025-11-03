@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: article.title,
       description: article.title,
-      images: [article.photo?.url || '/aljazara-black.svg'],
+      images: [article.photo?.filename_disk || '/aljazara-black.svg'],
     },
   };
 }
@@ -101,7 +101,7 @@ export default async function ArticlePage({ params }: { params: any }) {
             </div>
 
             <div className={styles.tagsContainer}>
-              {article.isFeatured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
+              {article.is_featured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
               {article.tags?.map((tag, index) => (
                 <span key={index}>{tag}</span>
               ))}

@@ -15,7 +15,7 @@ export default function ListMixedArticles({ listTitle, articlesList }: Props) {
       </div>
       <div className={styles.articlesList}>
         {articlesList.data.map((a) => (
-          <JustTitleArticleCard key={a.documentId} article={a} borderTop={true} />
+          <JustTitleArticleCard key={a.id} article={a} borderTop={true} />
         ))}
       </div>
     </>

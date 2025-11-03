@@ -1,11 +1,8 @@
-import AdContainer from '@/components/ads/page';
 import ArticleFeaturedCard from '@/components/articleFeaturedCard/page';
-import { HomePageSwitcher } from '@/components/HomePageSwitcher/page';
 import ListArticles from '@/components/listArticles/page';
 import MainArticle from '@/components/mainArticle/mainArticle';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
-import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import { loadArticlesBySection, loadFeaturedArticles, loadMainArticle } from '@/serviecs/HomepageService';
+import { loadArticlesBySectionTitle, loadFeaturedArticles, loadMainArticle } from '@/serviecs/HomepageService';
 import * as motion from 'motion/react-client';
 import { connection } from 'next/server';
 import styles from './page.module.css';
@@ -13,24 +10,23 @@ import styles from './page.module.css';
 export default async function Home() {
   await connection();
 
-  const mainArticlesResponse: AljazaraArticle = await loadMainArticle();
-  //
-  const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('business');
-  const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('technology');
-  const culturalArticlesResponse: AljazaraApiResponse = await loadArticlesBySection('cultural');
+  const mainArticlesResponse: AljazaraApiResponse = await loadMainArticle();
+  const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('business');
+  const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('technology');
+  const culturalArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('cultural');
   const featuredArticlesRes: AljazaraApiResponse = await loadFeaturedArticles();
 
   return (
     <div className={styles.page}>
       {/* switcher on < tablet */}
       <div className={styles.switcher}>
-        <HomePageSwitcher
+        {/* <HomePageSwitcher
           business={businessArticlesResponse}
           tech={techArticlesResponse}
           cult={culturalArticlesResponse}
           fratured={featuredArticlesRes}
-          main={mainArticlesResponse}
-        />
+          main={mainArticlesResponse.data[0]}
+        /> */}
 
         {/* TODO: skeleton */}
       </div>
@@ -48,7 +44,7 @@ export default async function Home() {
             }}
           >
             {/* main article */}
-            {mainArticlesResponse ? <MainArticle article={mainArticlesResponse} /> : 'Loading main article'}
+            {mainArticlesResponse ? <MainArticle article={mainArticlesResponse.data[0]} /> : 'Loading main article'}
           </motion.div>
 
           {/* business */}
@@ -69,11 +65,9 @@ export default async function Home() {
         {/* Featured articles */}
         <div className={styles.featuredSection}>
           <div className={styles.articlesList}>
-            {featuredArticlesRes
-              ? featuredArticlesRes.data.map((a, i) => <ArticleFeaturedCard key={a.documentId} article={a} borderTop={i > 0} />)
-              : 'Loading featured articles ...'}
+            {featuredArticlesRes && featuredArticlesRes.data.map((a, i) => <ArticleFeaturedCard key={a.id} article={a} borderTop={i > 0} />)}
           </div>
-          <AdContainer size='250_250' />
+          {/* <AdContainer size='250_250' /> */}
           {/*  */}
         </div>
       </div>

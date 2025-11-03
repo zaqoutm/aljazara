@@ -5,22 +5,22 @@ export interface AljazaraArticle {
   documentId: string;
   slug?: string;
 
-  isMainHome?: boolean;
-  isMainSection?: boolean;
-  isFeatured?: boolean;
+  is_main_home?: boolean;
+  is_main_section?: boolean;
+  is_featured?: boolean;
 
-  createdAt?: string;
-  updatedAt?: string;
-  publishedAt?: string;
+  date_created?: string;
+  date_updated?: string;
+
   title?: string;
-  content?: string; // 👈 Rich Text, view in dangerouslySetInnerHTML={{ __html: article.content }}
+  content?: string; // WYSIWYG input
 
   photo?: {
-    alternativeText: string;
-    caption: string;
-    url: string;
+    title?: string;
+    description?: string;
+    filename_disk?: string;
   };
+  tags?: string[];
 
   section?: AljazaraSection;
-  tags?: string[];
 }

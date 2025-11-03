@@ -3,7 +3,6 @@ import { getArticlesBySection } from '@/serviecs/ArticlePageService';
 import { getLast2MainArticlesPageBySection } from '@/serviecs/SectionPageService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import LoadMoreList from '../LoadMoreList/page';
-import AdContainer from '../ads/page';
 import ArticleCard from '../articleCard/page';
 import ListMixedArticles from '../listMixedArticles/page';
 import MainArticle from '../mainArticle/mainArticle';
@@ -54,9 +53,9 @@ export async function SectionPageLayout(props: SectionPageLayoutProps) {
         {/*  */}
         {/* mixed articles */}
         <div className={styles.mixedArticles}>
-          <AdContainer size='250_250' />
+          {/* <AdContainer size='250_250' /> */}
           <ListMixedArticles listTitle='المزيد من المقالات' articlesList={mixedArticles} />
-          <AdContainer size='300_600' />
+          {/* <AdContainer size='300_600' /> */}
         </div>
       </div>
     </div>

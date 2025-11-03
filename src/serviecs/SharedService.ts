@@ -1,17 +1,26 @@
-const API = process.env.API_PATH;
+const API = process.env.NEXT_PUBLIC_API_PATH || 'http://localhost:3000/api';
+console.log(API);
 
-export async function getMixedLatestArticles(max: number) {
-  return await tryFetch(`/articles?sort[1]=publishedAt:desc&pagination[0]=start&pagination[limit]=${max}`, 'articles');
+interface ApiResponse {
+  data: any;
+  meta: unknown;
 }
 
 export const tryFetch = async (path: string) => {
   try {
-    const req = await fetch(API + path);
-    return await req.json();
+    const res = await fetch(`${API}${path}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed: ${res.status}`);
+    return await res.json();
   } catch (error) {
     console.error('trying to fetch ', API, path);
     return new Promise((resolve) => {
-      resolve({ data: [], meta: '' });
+      console.error('Error fetching:', API + path, error);
+      return { data: [], meta: {} } as ApiResponse;
     });
   }
 };
+
+export async function getMixedLatestArticles(limit: number) {
+  // return await tryFetch('/articles');
+  return await tryFetch(`/items/articles?${limit}=1&sort=-date_created`);
+}

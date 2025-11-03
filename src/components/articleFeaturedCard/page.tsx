@@ -1,6 +1,6 @@
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import Image from 'next/image';
 import Link from 'next/link';
+import CustomImage from '../CustomImage/page';
 import styles from './styles.module.css';
 
 type Props = {
@@ -12,11 +12,11 @@ export default function ArticleFeaturedCard({ article, borderTop }: Props) {
   return (
     <Link
       href={`/articles/${article.slug}`}
-      className={`${styles.main} ${article.isFeatured && styles.featured} ${!borderTop && styles.noBorderTop}`}
+      className={`${styles.main} ${article.is_featured && styles.featured} ${!borderTop && styles.noBorderTop}`}
     >
       {/* iamge */}
       <div className={styles.imageContainer}>
-        <Image src={article.photo?.url ? article.photo.url : '/aljazara-black.svg'} alt={''} width={200} height={200} priority={true} />
+        <CustomImage title={article.photo?.title} filename_disk={article.photo?.filename_disk} />
       </div>
 
       {/* article title */}

@@ -1,6 +1,6 @@
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import Image from 'next/image';
 import Link from 'next/link';
+import CustomImage from '../CustomImage/page';
 import styles from './styles.module.css';
 
 interface MainArticleProps {
@@ -17,14 +17,7 @@ export default function MainArticle(props: MainArticleProps) {
     <Link href={`/articles/${article.slug}`} className={`${styles.main} ${props.flexibleSize && styles.sizeFlix}`}>
       {/* iamge */}
       <div className={styles.imageContainer}>
-        <Image
-          src={article.photo ? article.photo.url : '/aljazara-black.svg'}
-          // src={'/aljazara-black.svg'}
-          alt={article.photo && article.photo.alternativeText ? article.photo.alternativeText : 'Picture text'}
-          width={200}
-          height={200}
-          priority={true}
-        />
+        <CustomImage title={article.photo?.title} filename_disk={article.photo?.filename_disk} />
       </div>
       {/*  */}
       {/* article title */}
