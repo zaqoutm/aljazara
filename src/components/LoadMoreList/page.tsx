@@ -1,5 +1,5 @@
 'use client';
-import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
+import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
 import { useState } from 'react';
 import { loadMoreArticles } from '../../serviecs/ServerActions';
 import ArticleCard from '../articleCard/page';
@@ -8,8 +8,9 @@ import styles from './styles.module.css';
 export default function LoadMoreList({ ...props }) {
   // articles already loaded by server
   // document is not ready on server !
-  const [upadtedList, setUpdatedList] = useState<AljazaraApiResponse>();
+  const [articles, setArticles] = useState<AljazaraArticle[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(0);
 
   /**
    * spread operator
@@ -17,31 +18,23 @@ export default function LoadMoreList({ ...props }) {
    *
    * callback pattern
    * setState(x => [...x,z])
-   *
-   *
    */
   async function handleLoadMore() {
     setIsLoading(true);
-    let count = 5;
-    if (upadtedList && upadtedList.data.length > 1) {
-      count += upadtedList.data.length;
-    }
+    const results = await loadMoreArticles(props.sectionTitle, 5, page * 5); // start from 0, then 5
 
-    // server action
-    console.log('loading ... ', props.sectionTitle);
+    if (results.data.length > 5) setPage((prev) => prev + 1);
 
-    const x = await loadMoreArticles(props.sectionTitle, count);
+    setArticles((prev) => [...prev, ...results.data]);
 
-    if (x) {
-      setIsLoading(false);
-    }
-
-    setUpdatedList(x);
+    if (results.data) setIsLoading(false);
   }
 
   return (
     <div className={styles.moreArticles}>
-      {upadtedList?.data.map(
+      {page}
+
+      {articles?.map(
         (row, index) =>
           // exclude first 3 ROWS
           index > 2 && (

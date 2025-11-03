@@ -28,12 +28,10 @@ export async function SectionPageLayout(props: SectionPageLayoutProps) {
         ))}
       </div>
 
+      {/*  */}
+      {/*  */}
       {/* list + load more articles */}
       <div className={styles.bottomContent}>
-        {/*  */}
-        {/*  */}
-        {/* server + client components */}
-        {/* show articles here and onclcik client component will be attached */}
         <div>
           <div className={styles.moreArticles}>
             {articlesBySection?.data.map((row, index) => (
@@ -42,6 +40,8 @@ export async function SectionPageLayout(props: SectionPageLayoutProps) {
               </div>
             ))}
           </div>
+
+          {/* load more btn */}
           {articlesBySection.data.length > 2 && <LoadMoreList sectionTitle={props.sectionTitle} />}
         </div>
 
