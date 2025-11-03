@@ -1,10 +1,11 @@
-import AdContainer from '@/components/ads/page';
+import CustomImage from '@/components/CustomImage/page';
 import ListArticles from '@/components/listArticles/page';
 import ListMixedArticles from '@/components/listMixedArticles/page';
 import { SectionHeader } from '@/components/sectionHeader/sectionHeader';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import { getArticleByDocumentId, getArticlesBySection } from '@/serviecs/ArticlePageService';
+import { getArticleByDocumentId } from '@/serviecs/ArticlePageService';
+import { loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/HomepageService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import { faker, fakerAR } from '@faker-js/faker';
 import moment from 'moment';
@@ -14,7 +15,7 @@ import { notFound } from 'next/navigation';
 import styles from './styles.module.css';
 
 export async function generateStaticParams() {
-  const articles = await getArticlesBySection('sectionName');
+  const articles = await loadAllItems();
   return articles.data.map((article: AljazaraArticle) => ({
     slug: article.slug,
   }));
@@ -53,7 +54,7 @@ export default async function ArticlePage({ params }: { params: any }) {
 
   if (!article) notFound();
 
-  relatedArticles = await getArticlesBySection(article.section?.title || '...');
+  relatedArticles = await loadArticlesBySectionTitle(article.section?.title || '');
 
   return (
     <div className={styles.main}>
@@ -66,16 +67,9 @@ export default async function ArticlePage({ params }: { params: any }) {
         <div className={styles.rightContainer}>
           <div>
             <div className={styles.imageContainer}>
-              <Image
-                src={article.photo?.url || '/aljazara-black.svg'}
-                // src={'/aljazara-black.svg'}
-                alt={article.photo?.alternativeText || 'صورة المقال'}
-                width={200}
-                height={200}
-                priority={true}
-              />
+              <CustomImage title={article.photo?.title} filename_disk={article.photo?.filename_disk} />
             </div>
-            <p className={styles.imageCaption}>{article.photo?.caption}</p>
+            <p className={styles.imageCaption}>{article.photo?.description}</p>
           </div>
 
           {/* content */}
@@ -84,7 +78,7 @@ export default async function ArticlePage({ params }: { params: any }) {
             <div className={styles.content}>
               <h1>#{article.section?.titleAr}</h1>
               <div className={styles.createdAtContainer}>
-                <p>{moment(article.createdAt).format('LLLL')}</p>
+                <p>{moment(article.date_created).format('LLLL')}</p>
               </div>
               <br />
               <h1>{fakerAR.lorem.sentence()}</h1>
@@ -146,7 +140,7 @@ export default async function ArticlePage({ params }: { params: any }) {
 
         <div className={styles.leftContainer}>
           {mixedArticles && <ListMixedArticles articlesList={mixedArticles} listTitle='المزيد من المقالات' />}
-          <AdContainer size='250_600' />
+          {/* <AdContainer size='250_600' /> */}
         </div>
       </div>
     </div>

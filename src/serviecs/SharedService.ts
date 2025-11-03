@@ -22,5 +22,5 @@ export const tryFetch = async (path: string) => {
 
 export async function getMixedLatestArticles(limit: number) {
   // return await tryFetch('/articles');
-  return await tryFetch(`/items/articles?${limit}=1&sort=-date_created`);
+  return await tryFetch(`/items/articles?fields=*,photo.*&limit=${limit}&sort=-date_created`);
 }

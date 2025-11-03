@@ -9,7 +9,7 @@ export async function loadMainArticle(): Promise<AljazaraApiResponse> {
 
 export async function loadArticlesBySectionTitle(sectionTitle: string): Promise<AljazaraApiResponse> {
   // return await tryFetch(`/articles`);
-  return await tryFetch(`/items/articles?fields=*,photo.*,section_id.*&filter[section_id][title][_eq]=${sectionTitle}`);
+  return await tryFetch(`/items/articles?fields=*,photo.*,section_id.*&filter[section_id][title][_eq]=${sectionTitle}&limit=10&sort=date_created`);
 }
 
 export async function loadFeaturedArticles(): Promise<AljazaraApiResponse> {
