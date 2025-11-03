@@ -21,19 +21,17 @@ export default function LoadMoreList({ ...props }) {
    */
   async function handleLoadMore() {
     setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
     const results = await loadMoreArticles(props.sectionTitle, 5, page * 5); // start from 0, then 5
-
-    if (results.data.length > 5) setPage((prev) => prev + 1);
-
     setArticles((prev) => [...prev, ...results.data]);
-
-    if (results.data) setIsLoading(false);
+    if (results.data.length > 0) setPage((prev) => prev + 1);
   }
 
   return (
     <div className={styles.moreArticles}>
-      {page}
-
       {articles?.map(
         (row, index) =>
           // exclude first 3 ROWS
@@ -48,7 +46,7 @@ export default function LoadMoreList({ ...props }) {
       {/*  */}
       <div className={styles.readMoreBtnContainer}>
         <button disabled={isLoading} onClick={handleLoadMore} className={styles.readMoreBtn}>
-          حمل المزيد {isLoading && ' - انتظر..'}
+          {isLoading ? 'انتظر من فضلك...' : 'حمل المزيد'}
         </button>
       </div>
     </div>

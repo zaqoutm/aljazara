@@ -22,9 +22,10 @@
 }
 .readMoreBtn:hover {
   background-color: var(--foreground-hover);
+  color: #fff;
 }
 .readMoreBtn:disabled {
-  background-color: var(--border-dark);
+  background-color: var(--secondary-text);
 }
 
 /*  Responsivness  */

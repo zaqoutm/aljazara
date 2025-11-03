@@ -7,9 +7,11 @@ export async function loadMainArticle(): Promise<AljazaraApiResponse> {
   return await tryFetch(`/items/articles?fields=*,photo.*&filter[is_main_home][_eq]=true&limit=1&sort=-date_created`);
 }
 
-export async function loadArticlesBySectionTitle(sectionTitle: string): Promise<AljazaraApiResponse> {
+export async function loadArticlesBySectionTitle(sectionTitle: string, limit = 5): Promise<AljazaraApiResponse> {
   // return await tryFetch(`/articles`);
-  return await tryFetch(`/items/articles?fields=*,photo.*,section_id.*&filter[section_id][title][_eq]=${sectionTitle}&limit=10&sort=date_created`);
+  return await tryFetch(
+    `/items/articles?fields=*,photo.*,section_id.*&filter[section_id][title][_eq]=${sectionTitle}&limit=${limit}&sort=date_created`
+  );
 }
 
 export async function loadFeaturedArticles(): Promise<AljazaraApiResponse> {
