@@ -3,62 +3,49 @@ import ListArticles from '@/components/listArticles/page';
 import ListMixedArticles from '@/components/listMixedArticles/page';
 import { SectionHeader } from '@/components/sectionHeader/sectionHeader';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
-import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import { getArticleByDocumentId, loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/MainService';
+import { getArticleByDocumentId, getPhotoURL, loadArticlesBySectionTitle } from '@/serviecs/MainService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
-import { faker, fakerAR } from '@faker-js/faker';
-import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import styles from './styles.module.css';
 
-//
-//
-//
-export async function generateStaticParams() {
-  const articles = await loadAllItems();
-  return articles.data.map((article: AljazaraArticle) => ({
-    slug: article.slug,
-  }));
-}
-
-//
-//
-//
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const article = await getArticleByDocumentId(params.slug);
+  const { slug } = await params;
+
+  const article = await getArticleByDocumentId(slug);
   const currentArticle = article.data[0];
+
   if (!currentArticle) {
     return { title: 'المقالة غير موجودة' };
   }
+
   return {
     title: currentArticle.title,
     description: currentArticle.title || currentArticle.content?.slice(0, 120),
     openGraph: {
       title: currentArticle.title,
       description: currentArticle.title,
-      images: [currentArticle.photo?.filename_disk || '/aljazara-black.svg'],
+      images: [getPhotoURL(currentArticle.photo?.filename_disk) || '/aljazara-black.svg'],
     },
   };
 }
 
-//
-//
-// Page starts here
-//
-//
-export default async function ArticlePage({ params }: { params: any }) {
-  const docId = await params;
-  const width_height = 21;
+// export async function generateStaticParams() {}
 
-  const res: AljazaraApiResponse = await getArticleByDocumentId(docId.documentId);
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+export default async function Page({ params }: Props) {
+  const { slug } = await params;
+  const width_height = 21;
+  const res: AljazaraApiResponse = await getArticleByDocumentId(slug);
   const article = res.data[0];
   if (!article) notFound();
 
-  let relatedArticles: AljazaraApiResponse = { data: [], error: [] };
-  relatedArticles = await loadArticlesBySectionTitle(article.section?.title || '');
-
+  const relatedArticles = await loadArticlesBySectionTitle(article?.section?.title);
   const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
@@ -66,8 +53,6 @@ export default async function ArticlePage({ params }: { params: any }) {
       {article.title ? <SectionHeader title={article.title} /> : ''}
 
       <div className={styles.container}>
-        {/*
-         */}
         {/* Article view, share links, more from same section */}
         <div className={styles.rightContainer}>
           <div>
@@ -76,27 +61,12 @@ export default async function ArticlePage({ params }: { params: any }) {
             </div>
             <p className={styles.imageCaption}>{article.photo?.description}</p>
           </div>
-
           {/* content */}
           <div className={styles.contentContainer}>
+            {/*  */}
             {/* article body */}
             <div className={styles.content}>
-              <h1>#{article.section?.titleAr}</h1>
-              <div className={styles.createdAtContainer}>
-                <p>{moment(article.date_created).format('LLLL')}</p>
-              </div>
-              <br />
-              <h1>{fakerAR.lorem.sentence()}</h1>
-              <p>{fakerAR.lorem.paragraphs()}</p>
-              <img src={faker.image.avatarGitHub() || 'aljazara-black.svg'} alt='' />
-              <br />
-              <h2>{fakerAR.lorem.sentence()}</h2>
-              <p>{fakerAR.lorem.paragraphs()}</p>
-              <br />
-              <h3>{fakerAR.lorem.sentence()}</h3>
-              <p>{fakerAR.lorem.paragraphs()}</p>
-              <p>{fakerAR.lorem.paragraphs()}</p>
-              {/* <BlocksRenderer content={content}></BlocksRenderer> */}
+              <div dangerouslySetInnerHTML={{ __html: article.content || '' }} />
             </div>
 
             <div className={styles.tagsContainer}>
@@ -129,7 +99,7 @@ export default async function ArticlePage({ params }: { params: any }) {
               </div>
             </div>
           </div>
-
+          {/*  */}
           <div className={styles.moreNewsSection}>
             {relatedArticles && (
               <ListArticles
@@ -140,9 +110,9 @@ export default async function ArticlePage({ params }: { params: any }) {
             )}
           </div>
         </div>
-        {/*
-         */}
 
+        {/*  */}
+        {/*  */}
         <div className={styles.leftContainer}>
           {mixedArticles && <ListMixedArticles articlesList={mixedArticles} listTitle='المزيد من المقالات' />}
           {/* <AdContainer size='250_600' /> */}

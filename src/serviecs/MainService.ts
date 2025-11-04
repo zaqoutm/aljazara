@@ -20,7 +20,7 @@ export async function getArticleByDocumentId(documentId: string): Promise<Aljaza
     case STRAPI:
       return await tryFetch(`/articles/${documentId}?populate=*`);
     case DIRECTUS:
-    // return await tryFetch(`/articles?filter[]...etc${documentId}`);
+      return await tryFetch(`/articles?fields=*&filter[slug][_eq]=${documentId}`);
     default: // mock
       return await tryFetch(`/articles/home/main`); // mock
   }
@@ -35,7 +35,7 @@ export async function loadMainArticle(): Promise<AljazaraApiResponse> {
   }
 }
 
-export async function loadArticlesBySectionTitle(sectionTitle: string, limit = 5): Promise<AljazaraApiResponse> {
+export async function loadArticlesBySectionTitle(sectionTitle?: string, limit = 5): Promise<AljazaraApiResponse> {
   switch (current) {
     case DIRECTUS:
       return await tryFetch(
