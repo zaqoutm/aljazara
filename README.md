@@ -1,54 +1,84 @@
-`comming soon...`
+# ▲ Aljazara News Website
 
-# [Aljazara News Website](https://www.aljazara.com)
+🔗 visit [https://aljazara.com](https://aljazara.com)
 
-News Network
+![License](https://img.shields.io/github/license/zaqoutm/aljazara)
+![commits](https://img.shields.io/github/last-commit/zaqoutm/aljazara) ![](https://img.shields.io/github/stars/zaqoutm/aljazara)
 
-<div align='center' style="border:0.3px solid #ddd; border-radius:12px; padding: 12px; margin-bottom:12px">
-  <img src="./public/ss-aljazara.png" alt="Aljazara homepage" style='border-radius:12px;border:1px solid #ddd;'/>
+<div align='center' style="border:0.3px solid #ddd; border-radius:8px; padding: 12px;">
+  <img src="./public/ss-aljazara.png" alt="Aljazara homepage" style='border-radius:8px; solid #ddd;'/>
 </div>
 
-## 🚀 Getting Started
+<br>
 
-`Development mode` uses mock data
+# 🚀 Getting Started
 
 ```sh
 git clone https://github.com/zaqoutm/aljazara.git
 cd aljazara
 npm install
-npm run dev
 ```
 
-## 🛠️ Tech stack
+## # Run with "Directus" app
 
-- Next js 15
+1. We need Directus app running `https://your-api-url`
+2. Set .env variables
+
+`NEXT_PUBLIC_API_PATH=http://localhost:8055/items`
+`CURRENT_IMPL=directus`
+
+3. Update next.config.ts remove `output: 'export'`, or just comment it out `//`
+
+> npm run dev http://localhost:3000/
+
+## # Try with `fakerjs`
+
+1. Enable app route `/src/app/_api` to `.../api`
+
+just rename the folder, remove the underscore \_
+
+2. `next.config.ts` disable `output: 'export'`
+
+> npm run dev http://localhost:3000/
+
+<br/>
+
+# 👷‍♀️ Build .ssg
+
+(SSG) Static Site Generation
+
+- Enable `output:'export'` in next.config.ts
+- Remove or hide `src/app/api` adding \_ `.../_api`
+- Set .env variables
+
+`NEXT_PUBLIC_API_PATH=http://localhost:8055/items`
+`CURRENT_IMPL=directus`
+
+```sh
+npm run lint
+npm run build
+```
+
+<div align='center' style="border:0.3px solid #ddd; border-radius:8px; padding: 12px;">
+  <img src="./public/ssh-build.png" alt="SSG" style='border-radius:8px; solid #ddd;'/>
+</div>
+<br/>
+
+Try `live-server out` http://127.0.0.1:8080
+
+<br/>
+
+# 🛠️ Tech stack
+
+- ▲ Next.js 15.1.6
 - React 19
 - motion
-
-## Mock api
-
-fakerjs
+- fakerjs
+- moment
 
 `src/app/api/articles/route.ts`
 
 http://localhost:3000/api/articles/
-
----
-
-<!--
-## Build
-
-```sh
-# not yet,
-``` -->
-
-<!-- ## Deployment
-
-Using static site generation (SSG) to build the site
-
-- Directus CMS as backend
-- MySql database
-- Storage (media and backups) -->
 
 ## License
 
@@ -57,4 +87,5 @@ Using static site generation (SSG) to build the site
 
 <div style="  text-align: center;">
   Built with ❤️ by Mohammed
+</div>
 </div>
