@@ -1,6 +1,5 @@
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
-import { loadArticlesBySectionTitle } from '@/serviecs/HomepageService';
-import { getMainArticlesBySection } from '@/serviecs/SectionPageService';
+import { getMainArticlesBySection, loadArticlesBySectionTitle } from '@/serviecs/MainService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import LoadMoreList from '../LoadMoreList/page';
 import ArticleCard from '../articleCard/page';

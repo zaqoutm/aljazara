@@ -4,8 +4,7 @@ import ListMixedArticles from '@/components/listMixedArticles/page';
 import { SectionHeader } from '@/components/sectionHeader/sectionHeader';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import { getArticleByDocumentId } from '@/serviecs/ArticlePageService';
-import { loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/HomepageService';
+import { getArticleByDocumentId, loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/MainService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import { faker, fakerAR } from '@faker-js/faker';
 import moment from 'moment';
@@ -14,6 +13,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import styles from './styles.module.css';
 
+//
+//
+//
 export async function generateStaticParams() {
   const articles = await loadAllItems();
   return articles.data.map((article: AljazaraArticle) => ({
@@ -21,40 +23,43 @@ export async function generateStaticParams() {
   }));
 }
 
+//
+//
+//
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const article = await getArticleByDocumentId(params.slug);
-
-  if (!article) {
+  const currentArticle = article.data[0];
+  if (!currentArticle) {
     return { title: 'المقالة غير موجودة' };
   }
-
   return {
-    title: article.title,
-    description: article.title || article.content?.slice(0, 120),
+    title: currentArticle.title,
+    description: currentArticle.title || currentArticle.content?.slice(0, 120),
     openGraph: {
-      title: article.title,
-      description: article.title,
-      images: [article.photo?.filename_disk || '/aljazara-black.svg'],
+      title: currentArticle.title,
+      description: currentArticle.title,
+      images: [currentArticle.photo?.filename_disk || '/aljazara-black.svg'],
     },
   };
 }
 
-// Page starts here.
 //
 //
+// Page starts here
 //
 //
 export default async function ArticlePage({ params }: { params: any }) {
   const docId = await params;
-  const article: AljazaraArticle = await getArticleByDocumentId(docId.documentId);
-  const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
-  let relatedArticles: AljazaraApiResponse = { data: [], error: [] };
-
   const width_height = 21;
 
+  const res: AljazaraApiResponse = await getArticleByDocumentId(docId.documentId);
+  const article = res.data[0];
   if (!article) notFound();
 
+  let relatedArticles: AljazaraApiResponse = { data: [], error: [] };
   relatedArticles = await loadArticlesBySectionTitle(article.section?.title || '');
+
+  const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
     <div className={styles.main}>

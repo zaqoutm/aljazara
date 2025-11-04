@@ -1,5 +1,4 @@
 const API = process.env.NEXT_PUBLIC_API_PATH || 'http://localhost:3000/api';
-console.log(API);
 
 interface ApiResponse {
   data: any;
@@ -7,8 +6,6 @@ interface ApiResponse {
 }
 
 export const tryFetch = async (path: string) => {
-  console.log(API);
-
   try {
     const res = await fetch(`${API}${path}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`Failed: ${res.status}`);
