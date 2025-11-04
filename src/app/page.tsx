@@ -4,12 +4,9 @@ import MainArticle from '@/components/mainArticle/mainArticle';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { loadArticlesBySectionTitle, loadFeaturedArticles, loadMainArticle } from '@/serviecs/MainService';
 import * as motion from 'motion/react-client';
-import { connection } from 'next/server';
 import styles from './page.module.css';
 
 export default async function Home() {
-  await connection();
-
   const mainArticlesResponse: AljazaraApiResponse = await loadMainArticle();
   const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('business');
   const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('technology');

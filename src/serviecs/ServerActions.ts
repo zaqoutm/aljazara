@@ -1,4 +1,4 @@
-'use server';
+// 'use server';
 
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { getArticlesByPage } from './MainService';

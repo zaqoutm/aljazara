@@ -9,7 +9,8 @@ const DIRECTUS = 'directus';
 export function getPhotoURL(givenUrl?: string) {
   if (API) {
     if (current == DIRECTUS) {
-      return API + '/assets/' + givenUrl;
+      const x = 'items/';
+      return API.substring(0, API.length - x.length) + '/assets/' + givenUrl;
     }
   }
   return givenUrl;
@@ -20,7 +21,7 @@ export async function getArticleByDocumentId(documentId: string): Promise<Aljaza
     case STRAPI:
       return await tryFetch(`/articles/${documentId}?populate=*`);
     case DIRECTUS:
-      return await tryFetch(`/articles?fields=*&filter[slug][_eq]=${documentId}`);
+      return await tryFetch(`/articles?fields=*,photo.filename_disk&filter[slug][_eq]=${documentId}`);
     default: // mock
       return await tryFetch(`/articles/home/main`); // mock
   }
@@ -56,7 +57,7 @@ export async function loadFeaturedArticles(): Promise<AljazaraApiResponse> {
 }
 
 export async function loadAllItems(): Promise<AljazaraApiResponse> {
-  return await tryFetch('/articles');
+  return await tryFetch('/articles?fields.*');
 }
 
 export async function getMainArticlesBySection(sectionTitle: string): Promise<AljazaraApiResponse> {

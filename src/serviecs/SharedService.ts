@@ -7,7 +7,8 @@ interface ApiResponse {
 
 export const tryFetch = async (path: string) => {
   try {
-    const res = await fetch(`${API}${path}`, { cache: 'no-store' });
+    // const res = await fetch(`${API}${path}`, { cache: 'no-store' });
+    const res = await fetch(`${API}${path}`);
     if (!res.ok) throw new Error(`Failed: ${res.status}`);
     return await res.json();
   } catch (error) {

@@ -3,15 +3,25 @@ import ListArticles from '@/components/listArticles/page';
 import ListMixedArticles from '@/components/listMixedArticles/page';
 import { SectionHeader } from '@/components/sectionHeader/sectionHeader';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
-import { getArticleByDocumentId, getPhotoURL, loadArticlesBySectionTitle } from '@/serviecs/MainService';
+import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
+import { getArticleByDocumentId, getPhotoURL, loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/MainService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import styles from './styles.module.css';
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
+//
+export async function generateStaticParams() {
+  const articles = await loadAllItems();
+  return articles.data.map((article: AljazaraArticle) => ({
+    slug: article.slug,
+  }));
+}
+
+//
+export async function generateMetadata({ params }: { params: any }) {
+  const { slug } = params;
 
   const article = await getArticleByDocumentId(slug);
   const currentArticle = article.data[0];
@@ -31,17 +41,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// export async function generateStaticParams() {}
+export default async function Page({ params }: any) {
+  const { slug } = params;
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-export default async function Page({ params }: Props) {
-  const { slug } = await params;
   const width_height = 21;
   const res: AljazaraApiResponse = await getArticleByDocumentId(slug);
+
   const article = res.data[0];
   if (!article) notFound();
 

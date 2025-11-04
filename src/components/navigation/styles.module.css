@@ -82,8 +82,7 @@
   font-size: 13px;
 }
 
-.navBottom a:hover,
-button:hover {
+.navBottom a:hover {
   color: #ffffff7c;
 }
 
