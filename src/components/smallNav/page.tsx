@@ -81,6 +81,7 @@ export default function SmallNavigation() {
       },
     },
   };
+  const width_height = 18;
 
   return (
     // .navContainer in the global css
@@ -107,6 +108,18 @@ export default function SmallNavigation() {
               </motion.li>
             ))}
           </motion.ul>
+
+          <div className={styles.socialLinks}>
+            <Link href={'https://x.com/aljazaranews'} target='_blank'>
+              <Image src='/x-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
+            </Link>
+            <Link href={'https://facebook.com/aljazaranews'} target='_blank'>
+              <Image src='/fb-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
+            </Link>
+            <Link href={'https://instagram.com/aljazaranews'} target='_blank'>
+              <Image src='/insta-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
+            </Link>
+          </div>
         </motion.div>
       </div>
     </div>

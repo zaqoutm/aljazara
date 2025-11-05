@@ -10,6 +10,7 @@
   backdrop-filter: blur(10px);
   position: absolute;
   top: 10px;
+  border: 1px solid var(--border-dark);
 }
 
 .navTop {
@@ -38,7 +39,7 @@
 
 .menuButtonBurger::after,
 .menuButtonBurger::before {
-  content: "";
+  content: '';
   width: 18px;
   height: 2.5px;
   border-radius: 5px;
@@ -105,4 +106,21 @@
 /* at close prevent pointer */
 .pointerNone {
   pointer-events: none;
+}
+
+.socialLinks {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 21px;
+  transition: 0.2s all ease-in-out;
 }

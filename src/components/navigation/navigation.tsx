@@ -16,13 +16,13 @@ export default function NavigationComponent() {
           </Link>
 
           <div className={styles.socialLinks}>
-            <Link href={'https://x.com/aljazaranews'}>
+            <Link href={'https://x.com/aljazaranews'} target='_blank'>
               <Image src='/x-icon-white.svg' alt='' width={width_height} height={width_height} loading='eager' />
             </Link>
-            <Link href={'https://facebook.com/aljazaranews'}>
+            <Link href={'https://facebook.com/aljazaranews'} target='_blank'>
               <Image src='/fb-icon-white.svg' alt='' width={width_height} height={width_height} loading='eager' />
             </Link>
-            <Link href={'https://instagram.com/aljazaranews'}>
+            <Link href={'https://instagram.com/aljazaranews'} target='_blank'>
               <Image src='/insta-icon-white.svg' alt='' width={width_height} height={width_height} loading='eager' />
             </Link>
           </div>

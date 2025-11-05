@@ -6,9 +6,10 @@ import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
 import { getArticleByDocumentId, getPhotoURL, loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/MainService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
+import moment from 'moment';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import SocialLinks from './social_links';
 import styles from './styles.module.css';
 
 //
@@ -21,7 +22,7 @@ export async function generateStaticParams() {
 
 //
 export async function generateMetadata({ params }: { params: any }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const article = await getArticleByDocumentId(slug);
   const currentArticle = article.data[0];
@@ -44,7 +45,6 @@ export async function generateMetadata({ params }: { params: any }) {
 export default async function Page({ params }: any) {
   const { slug } = params;
 
-  const width_height = 21;
   const res: AljazaraApiResponse = await getArticleByDocumentId(slug);
 
   const article = res.data[0];
@@ -68,6 +68,8 @@ export default async function Page({ params }: any) {
           </div>
           {/* content */}
           <div className={styles.contentContainer}>
+            <p>{moment(article.date_created).format('LL')}</p>
+            <h1>{article.section_id?.title_ar}</h1>
             {/*  */}
             {/* article body */}
             <div className={styles.content}>
@@ -81,28 +83,7 @@ export default async function Page({ params }: any) {
               ))}
             </div>
 
-            <div className={styles.socialLinks}>
-              <Link href={'#'}>
-                <Image src='/fb-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
-              </Link>
-              <Link href={'#'}>
-                <Image src='/x-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
-              </Link>
-              <Link href={'#'}>
-                <Image src='/email-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
-              </Link>
-              <Link href={'#'}>
-                <Image src='/whatsapp-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
-              </Link>
-              <Link href={'#'}>
-                <Image src='/link-icon.svg' alt='' width={width_height} height={width_height} loading='eager' />
-              </Link>
-
-              <div className={styles.socialLinksText}>
-                <p>شارك المقالة</p>
-                <Image src='/chevronLeft.svg' alt='' width={width_height} height={width_height} loading='eager' />
-              </div>
-            </div>
+            <SocialLinks />
           </div>
           {/*  */}
           <div className={styles.moreNewsSection}>

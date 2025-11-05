@@ -1,6 +1,6 @@
-import Image from "next/image";
-import styles from "./styles.module.css";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './styles.module.css';
 
 export default function FooterComponent() {
   return (
@@ -9,7 +9,7 @@ export default function FooterComponent() {
         <Image src='/jazara.svg' alt='Aljazara logo' width={37} height={76} />
         <div className={styles.footerLogoSlug}>
           <p>موقع الجزرة نيوز</p>
-          <p>. © 2025</p>
+          <p>. © 2025-26</p>
         </div>
       </div>
       <div className={styles.footerLinks}>
