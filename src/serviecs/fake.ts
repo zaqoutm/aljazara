@@ -16,10 +16,10 @@ export function generateArticle(): AljazaraArticle {
       description: faker.lorem.sentence(),
     },
 
-    section: {
+    section_id: {
       id: faker.number.int() + '',
       title: faker.helpers.arrayElement(['business', 'technology', 'culture']) + '',
-      titleAr: faker.helpers.arrayElement(['تكنولوجيا', 'اقتصاد', 'ثقافة']) + '',
+      title_ar: faker.helpers.arrayElement(['تكنولوجيا', 'اقتصاد', 'ثقافة']) + '',
     },
     tags: faker.helpers.uniqueArray(faker.lorem.word, 3),
     date_created: faker.date.anytime().toISOString() + '',

@@ -10,6 +10,8 @@ const description = 'جميع مقالات الثقافة من الجزرة ني
 export const metadata: Metadata = {
   title: title,
   description: description,
+  metadataBase: new URL('https://aljazara.com'),
+
   openGraph: {
     title: title,
     description: description,

@@ -35,6 +35,8 @@ export async function generateMetadata({ params }: { params: any }) {
   return {
     title: currentArticle.title,
     description: currentArticle.title || currentArticle.content?.slice(0, 120),
+    metadataBase: new URL('https://aljazara.com'),
+
     openGraph: {
       title: currentArticle.title,
       description: currentArticle.title,

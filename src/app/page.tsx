@@ -10,6 +10,8 @@ import styles from './page.module.css';
 export const metadata = {
   title: 'Aljazara – الأخبار والمقالات',
   description: 'منصة الجزيرة للأخبار والمحتوى',
+  metadataBase: new URL('https://aljazara.com'),
+
   openGraph: {
     url: 'https://aljazara.com',
     images: ['/ss-aljazara.png'],

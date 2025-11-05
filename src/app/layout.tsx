@@ -23,6 +23,8 @@ const notoKufi = Noto_Kufi_Arabic({
 export const metadata: Metadata = {
   title: 'Aljazara الجزرة نيوز',
   description: 'Aljazara news webiste | أخبار الجزرة نيوز',
+  metadataBase: new URL('https://aljazara.com'),
+
   openGraph: {
     url: 'https://aljazara.com',
     images: ['/ss-aljazara.png'],

@@ -10,6 +10,8 @@ const description = 'تواصل معنا';
 export const metadata: Metadata = {
   title: title,
   description: description,
+  metadataBase: new URL('https://aljazara.com'),
+
   openGraph: {
     title: title,
     description: description,
