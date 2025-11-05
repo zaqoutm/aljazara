@@ -1,16 +1,29 @@
-import { Metadata } from "next";
-import { SectionHeader } from "../../components/sectionHeader/sectionHeader";
-import styles from "./styles.module.css";
+import { Metadata } from 'next';
+import { SectionHeader } from '../../components/sectionHeader/sectionHeader';
+import styles from './styles.module.css';
+
+const description = 'من نحن | شبكة الجزرة نيوز';
+const title = 'الجزرة نيوز';
 
 export const metadata: Metadata = {
-  title: "عن الجزرة نيوز",
-  description: "عن الجزرة نيوز",
+  title: title,
+  description: description,
+
+  openGraph: {
+    title: title,
+    description: description,
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/about',
+  },
 };
 
 export default async function Page() {
   return (
-    <div className={styles.main}>
-      <SectionHeader title={"عن الجزرة نيوز"} />
+    <main className={styles.main}>
+      <SectionHeader title={title} />
 
       <div className={styles.content}>
         <p>
@@ -22,6 +35,6 @@ export default async function Page() {
           القيمة والشاملة التي تلبي احتياجات القارئ بمصداقية وحيادية ومهنية عالية. .
         </p>
       </div>
-    </div>
+    </main>
   );
 }

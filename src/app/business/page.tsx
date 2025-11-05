@@ -1,19 +1,32 @@
-import { Metadata } from "next";
-import { SectionHeader } from "../../components/sectionHeader/sectionHeader";
-import styles from "./styles.module.css";
+import { Metadata } from 'next';
+import { SectionHeader } from '../../components/sectionHeader/sectionHeader';
+import styles from './styles.module.css';
 
-import { SectionPageLayout } from "../../components/SectionPageLayout/page";
+import { SectionPageLayout } from '../../components/SectionPageLayout/page';
+
+const title = 'الجزرة مال و اعمال';
+const description = 'جميع مقالات الاقتصاد من الجزرة نيوز';
 
 export const metadata: Metadata = {
-  title: "الجزرة ثقافة",
-  description: "جميع مقالات الثقافة من الجزرة نيوز",
+  title: title,
+  description: description,
+
+  openGraph: {
+    title: title,
+    description: description,
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/business',
+  },
 };
 
 export default async function Page() {
   return (
-    <div className={styles.main}>
-      <SectionHeader title={"المال والأعمال"} />
+    <main className={styles.main}>
+      <SectionHeader title={'المال والأعمال'} />
       <SectionPageLayout sectionTitle='business' />
-    </div>
+    </main>
   );
 }

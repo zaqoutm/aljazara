@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aljazara.com
+
+# Sitemaps
+Sitemap: https://aljazara.com/sitemap.xml

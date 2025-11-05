@@ -23,6 +23,13 @@ const notoKufi = Noto_Kufi_Arabic({
 export const metadata: Metadata = {
   title: 'Aljazara الجزرة نيوز',
   description: 'Aljazara news webiste | أخبار الجزرة نيوز',
+  openGraph: {
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/',
+  },
 };
 
 export default function RootLayout({
@@ -32,7 +39,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ar'>
-      <body className={`${almarai.variable} ${notoKufi.variable}`}>
+      <head>
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Aljazara',
+              url: 'https://aljazara.com',
+            }),
+          }}
+        />
+      </head>
+      <body className={`${almarai.variable} ${notoKufi.variable} `}>
         <NextTopLoader speed={800} color='linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff)' showSpinner={false} />
         <SmallNavigation />
         <NavigationComponent />

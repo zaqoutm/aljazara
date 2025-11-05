@@ -4,16 +4,28 @@ import Link from 'next/link';
 import { SectionHeader } from '../../components/sectionHeader/sectionHeader';
 import styles from './styles.module.css';
 
+const title = 'تواصل معنا';
+const description = 'تواصل معنا';
+
 export const metadata: Metadata = {
-  title: 'تواصل معنا',
-  description: 'تواصل معنا',
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/contact',
+  },
 };
 
 export default async function Page() {
   const width_height = 18;
 
   return (
-    <div className={styles.main}>
+    <main className={styles.main}>
       <SectionHeader title={'تواصل معنا'} />
 
       <div className={styles.content}>
@@ -60,6 +72,6 @@ export default async function Page() {
         </div>
         <br />
       </div>
-    </div>
+    </main>
   );
 }

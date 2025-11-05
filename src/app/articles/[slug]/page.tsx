@@ -4,7 +4,7 @@ import ListMixedArticles from '@/components/listMixedArticles/page';
 import { SectionHeader } from '@/components/sectionHeader/sectionHeader';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
-import { getArticleByDocumentId, getPhotoURL, loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/MainService';
+import { getArticleByDocumentId, loadAllItems, loadArticlesBySectionTitle } from '@/serviecs/MainService';
 import { getMixedLatestArticles } from '@/serviecs/SharedService';
 import moment from 'moment';
 import Image from 'next/image';
@@ -23,6 +23,7 @@ export async function generateStaticParams() {
 //
 export async function generateMetadata({ params }: { params: any }) {
   const { slug } = params;
+  const articleUrl = `https://aljazara.com/articles/${slug}`;
 
   const article = await getArticleByDocumentId(slug);
   const currentArticle = article.data[0];
@@ -37,7 +38,11 @@ export async function generateMetadata({ params }: { params: any }) {
     openGraph: {
       title: currentArticle.title,
       description: currentArticle.title,
-      images: [getPhotoURL(currentArticle.photo?.filename_disk) || '/aljazara-black.svg'],
+      images: ['/ss-aljazara.png'],
+      url: 'https://aljazara.com',
+    },
+    alternates: {
+      canonical: articleUrl,
     },
   };
 }
@@ -54,7 +59,7 @@ export default async function Page({ params }: any) {
   const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
-    <div className={styles.main}>
+    <main className={styles.main}>
       {article.title ? <SectionHeader title={article.title} /> : ''}
 
       <div className={styles.container}>
@@ -69,7 +74,7 @@ export default async function Page({ params }: any) {
           {/* content */}
           <div className={styles.contentContainer}>
             <p>{moment(article.date_created).format('LL')}</p>
-            <h1>{article.section_id?.title_ar}</h1>
+            <h3>#{article.section_id?.title_ar}</h3>
             {/*  */}
             {/* article body */}
             <div className={styles.content}>
@@ -104,6 +109,6 @@ export default async function Page({ params }: any) {
           {/* <AdContainer size='250_600' /> */}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

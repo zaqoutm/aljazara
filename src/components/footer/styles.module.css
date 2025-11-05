@@ -8,7 +8,7 @@
   align-items: center;
   gap: 24px;
   background: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) left bottom #102039 no-repeat;
-  background-size: 100% 5px;
+  background-size: 100% 3px;
 }
 
 .footerLinks {

@@ -1,21 +1,33 @@
-import { Metadata } from "next";
-import { SectionHeader } from "../../components/sectionHeader/sectionHeader";
-import styles from "./styles.module.css";
+import { Metadata } from 'next';
+import { SectionHeader } from '../../components/sectionHeader/sectionHeader';
+import styles from './styles.module.css';
+
+const title = 'سياسة الخصوصية';
+const description = 'سياسة الخصوصية';
 
 export const metadata: Metadata = {
-  title: "سياسة الخصوصية",
-  description: "سياسة الخصوصية",
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/privacy',
+  },
 };
 
 export default async function Page() {
   return (
-    <div className={styles.main}>
-      <SectionHeader title={"سياسة الخصوصية"} />
+    <main className={styles.main}>
+      <SectionHeader title={'سياسة الخصوصية'} />
 
       <div className={styles.content}>
         <p>
           نقدر في موقع الجزرة نيوز أهمية الخصوصية وسياستها في حماية البيانات الشخصية في العصر الرقمي. ولذلك نحن ملتزمون بحماية خصوصية مستخدمي وزوار
-          موقع الجزرة نيوز من جميع أنحاء العالم أثناء تصفح الموقع الالكتروني.{" "}
+          موقع الجزرة نيوز من جميع أنحاء العالم أثناء تصفح الموقع الالكتروني.{' '}
         </p>
         <br />
         <p>
@@ -45,6 +57,6 @@ export default async function Page() {
           خلالها. وما أن يتحقق الغرض المحدد لحفظ البيانات سيتم حذفها بالكامل.
         </p>
       </div>
-    </div>
+    </main>
   );
 }

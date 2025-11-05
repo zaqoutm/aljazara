@@ -3,6 +3,7 @@
   --foreground: #272937;
   --foreground-hover: #272937e1;
   --secondary-text: #616161;
+  --light-text: #6161618f;
   --accent: #1991ff;
   --accent-light: #e8f4ff;
   --accent-hover: #49a8ff;
@@ -52,7 +53,7 @@ body {
 }
 
 body {
-  font-family: 'Noto Kufi Arabic', sans-serif, Arial, Helvetica;
+  font-family: var(--font-noto-kufi), sans-serif, Arial, Helvetica;
   font-size: 16px;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
@@ -86,7 +87,7 @@ h4 {
 
 h1 {
   font-size: 21px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.4;
 }
 

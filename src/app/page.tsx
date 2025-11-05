@@ -7,6 +7,18 @@ import { loadArticlesBySectionTitle, loadFeaturedArticles, loadMainArticle } fro
 import * as motion from 'motion/react-client';
 import styles from './page.module.css';
 
+export const metadata = {
+  title: 'Aljazara – الأخبار والمقالات',
+  description: 'منصة الجزيرة للأخبار والمحتوى',
+  openGraph: {
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/',
+  },
+};
+
 export default async function Home() {
   const mainArticlesResponse: AljazaraApiResponse = await loadMainArticle();
   const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('business');
@@ -15,7 +27,7 @@ export default async function Home() {
   const featuredArticlesRes: AljazaraApiResponse = await loadFeaturedArticles();
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       {/* switcher on < tablet */}
       <div className={styles.switcher}>
         <HomePageSwitcher
@@ -69,6 +81,6 @@ export default async function Home() {
           {/*  */}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

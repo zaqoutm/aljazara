@@ -2,7 +2,7 @@
   border-top: 1px dotted var(--border-dark);
   display: flex;
   overflow: hidden;
-  padding: 8px 0;
+  padding: 21px 0;
 }
 
 .noBorderTop {
@@ -21,11 +21,11 @@
 
 .cardTop p {
   color: var(--secondary-text);
-  font-size: 13px;
+  font-size: 12px;
 }
 .cardPunkt {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
   border-radius: 44px;
   background-color: var(--orange);
 }
@@ -39,7 +39,7 @@
 
 .titleContainer h1 {
   padding-right: 24px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -50,12 +50,12 @@
 
 .badge {
   margin-left: 5px;
-  color: var(--secondary-text);
   width: fit-content;
-  padding: 2px 12px;
-  color: var(--orange);
-  border: 1px dotted var(--orange);
-  font-size: 12px;
+  padding: 0 12px;
+  color: var(--accent);
+  background-color: var(--accent-light);
+  border-radius: 8px;
+  font-size: 11px;
 }
 
 /*  Responsivness  */

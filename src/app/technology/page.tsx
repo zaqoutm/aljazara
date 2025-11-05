@@ -1,18 +1,30 @@
-import { Metadata } from "next";
-import { SectionHeader } from "../../components/sectionHeader/sectionHeader";
-import { SectionPageLayout } from "../../components/SectionPageLayout/page";
-import styles from "./styles.module.css";
+import { Metadata } from 'next';
+import { SectionHeader } from '../../components/sectionHeader/sectionHeader';
+import { SectionPageLayout } from '../../components/SectionPageLayout/page';
+import styles from './styles.module.css';
+
+const title = 'الجزرة تكنولوجيا';
+const description = 'جميع مقالات التكنولوجيا من الجزرة نيوز';
 
 export const metadata: Metadata = {
-  title: "الجزرة تكنولوجيا",
-  description: "جميع مقالات التكنولوجيا من الجزرة نيوز",
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    url: 'https://aljazara.com',
+    images: ['/ss-aljazara.png'],
+  },
+  alternates: {
+    canonical: 'https://aljazara.com/technology',
+  },
 };
 
 export default async function Page() {
   return (
-    <div className={styles.main}>
-      <SectionHeader title={"أخبار التكنولوجيا"} />
+    <main className={styles.main}>
+      <SectionHeader title={'أخبار التكنولوجيا'} />
       <SectionPageLayout sectionTitle='technology' />
-    </div>
+    </main>
   );
 }
