@@ -1,4 +1,5 @@
 import ArticleFeaturedCard from '@/components/articleFeaturedCard/page';
+import { HomePageSwitcher } from '@/components/HomePageSwitcher/page';
 import ListArticles from '@/components/listArticles/page';
 import MainArticle from '@/components/mainArticle/mainArticle';
 import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
@@ -17,13 +18,13 @@ export default async function Home() {
     <div className={styles.page}>
       {/* switcher on < tablet */}
       <div className={styles.switcher}>
-        {/* <HomePageSwitcher
+        <HomePageSwitcher
           business={businessArticlesResponse}
           tech={techArticlesResponse}
           cult={cultureArticlesResponse}
           fratured={featuredArticlesRes}
           main={mainArticlesResponse.data[0]}
-        /> */}
+        />
 
         {/* TODO: skeleton */}
       </div>

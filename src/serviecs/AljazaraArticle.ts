@@ -22,5 +22,5 @@ export interface AljazaraArticle {
   };
   tags?: string[];
 
-  section?: AljazaraSection;
+  section_id?: AljazaraSection;
 }

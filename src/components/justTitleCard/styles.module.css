@@ -46,19 +46,15 @@
 .titleContainerBadges {
   display: flex;
   align-items: center;
-  gap: 13px;
-}
-
-.titleContainerBadges img {
-  width: auto;
-  max-height: 18px;
 }
 
 .badge {
-  border-radius: 16px;
-  padding: 8px 16px;
+  margin-left: 5px;
+  color: var(--secondary-text);
   width: fit-content;
-  color: var(--accent);
+  padding: 2px 12px;
+  color: var(--orange);
+  border: 1px dotted var(--orange);
   font-size: 12px;
 }
 

@@ -7,13 +7,5 @@ interface PropsType {
 }
 
 export default function CustomImage(props: PropsType) {
-  return (
-    <Image
-      src={getPhotoURL(props.filename_disk) || '/aljazara-black.svg'}
-      alt={props.title || 'Picture text'}
-      width={200}
-      height={200}
-      priority={true}
-    />
-  );
+  return <Image src={getPhotoURL(props.filename_disk)} alt={props.title || 'Picture text'} width={200} height={200} priority={true} />;
 }

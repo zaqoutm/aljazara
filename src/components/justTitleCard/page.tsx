@@ -21,7 +21,9 @@ export default function JustTitleArticleCard({ article, borderTop }: Props) {
           <div className={styles.cardPunkt}></div>
           <p>{moment(article.date_created).fromNow()}</p>
         </div>
-        <h1>{article.title}</h1>
+        <h1>
+          <span className={styles.badge}>{article.section_id?.title_ar}</span> {article.title}
+        </h1>
       </div>
     </Link>
   );

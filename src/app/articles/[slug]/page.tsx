@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 //
 export async function generateMetadata({ params }: { params: any }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const article = await getArticleByDocumentId(slug);
   const currentArticle = article.data[0];
@@ -50,7 +50,7 @@ export default async function Page({ params }: any) {
   const article = res.data[0];
   if (!article) notFound();
 
-  const relatedArticles = await loadArticlesBySectionTitle(article?.section?.title);
+  const relatedArticles = await loadArticlesBySectionTitle(article?.section_id?.title);
   const mixedArticles: AljazaraApiResponse = await getMixedLatestArticles(10);
 
   return (
@@ -108,8 +108,8 @@ export default async function Page({ params }: any) {
           <div className={styles.moreNewsSection}>
             {relatedArticles && (
               <ListArticles
-                listTitle={`المزيد من أخبار ال${article.section?.titleAr ?? ''}`}
-                sectionURL={article.section?.title ?? '#'}
+                listTitle={`المزيد من أخبار ال${article.section_id?.title_ar}`}
+                sectionURL={article.section_id?.title ?? '#'}
                 articlesList={relatedArticles}
               />
             )}

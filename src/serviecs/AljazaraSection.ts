@@ -3,6 +3,6 @@ import { AljazaraArticle } from './AljazaraArticle';
 export interface AljazaraSection {
   id?: string;
   title?: string;
-  titleAr?: string;
+  title_ar?: string;
   articles?: AljazaraArticle[];
 }

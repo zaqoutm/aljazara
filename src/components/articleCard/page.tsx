@@ -22,16 +22,14 @@ export default function ArticleCard({ article, borderTop }: Props) {
       {/* article title */}
       <div className={styles.titleContainer}>
         <h1>{article.title}</h1>
-        {article.section && (
-          <div className={styles.titleContainerBadges}>
-            <div className={styles.tagsContainer}>
-              {article.is_featured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
-              {article.tags?.map((tag, index) => (
-                <span key={index}>{tag}</span>
-              ))}
-            </div>
+        <div className={styles.titleContainerBadges}>
+          <div className={styles.tagsContainer}>
+            {article.is_featured && <Image src='/favorite-featured-icon.svg' alt='featured' width={12} height={12} priority={true} />}
+            {article.tags?.map((tag, index) => (
+              <span key={index}>{tag}</span>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </Link>
   );

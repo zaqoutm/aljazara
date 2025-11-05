@@ -3,25 +3,21 @@ import { tryFetch } from './SharedService';
 
 const API = process.env.NEXT_PUBLIC_API_PATH;
 const current = process.env.CURRENT_IMPL;
+
 const STRAPI = 'strapi';
 const DIRECTUS = 'directus';
 
 export function getPhotoURL(givenUrl?: string) {
-  if (API) {
-    if (current == DIRECTUS) {
-      const x = 'items/';
-      return API.substring(0, API.length - x.length) + '/assets/' + givenUrl;
-    }
-  }
-  return givenUrl;
+  if (!givenUrl) return '/aljazara-black.svg'; // null photos
+  return API?.substring(0, API.length - 'items/'.length) + '/assets/' + givenUrl;
 }
 
 export async function getArticleByDocumentId(documentId: string): Promise<AljazaraApiResponse> {
   switch (current) {
-    case STRAPI:
-      return await tryFetch(`/articles/${documentId}?populate=*`);
     case DIRECTUS:
-      return await tryFetch(`/articles?fields=*,photo.filename_disk&filter[slug][_eq]=${documentId}`);
+      return await tryFetch(
+        `/articles?fields=*,section_id.title,section_id.title_ar,photo.filename_disk,photo.description&filter[slug][_eq]=${documentId}`
+      );
     default: // mock
       return await tryFetch(`/articles/home/main`); // mock
   }
@@ -30,7 +26,7 @@ export async function getArticleByDocumentId(documentId: string): Promise<Aljaza
 export async function loadMainArticle(): Promise<AljazaraApiResponse> {
   switch (current) {
     case DIRECTUS:
-      return await tryFetch(`/articles?fields=*,photo.*&filter[is_main_home][_eq]=true&limit=1&sort=-date_created`);
+      return await tryFetch(`/articles?fields=*,photo.filename_disk,photo.description&filter[is_main_home][_eq]=true&limit=1&sort=-date_created`);
     default:
       return await tryFetch(`/articles/home/main/`);
   }
@@ -40,7 +36,7 @@ export async function loadArticlesBySectionTitle(sectionTitle?: string, limit = 
   switch (current) {
     case DIRECTUS:
       return await tryFetch(
-        `/articles?fields=*,photo.*,section_id.*&filter[section_id][title][_eq]=${sectionTitle}&limit=${limit}&sort=date_created`
+        `/articles?fields=*,photo.filename_disk,photo.description,section_id.title,section_id.title_ar&filter[section_id][title][_eq]=${sectionTitle}&limit=${limit}&sort=date_created`
       );
     default:
       return await tryFetch(`/articles`);
@@ -50,7 +46,9 @@ export async function loadArticlesBySectionTitle(sectionTitle?: string, limit = 
 export async function loadFeaturedArticles(): Promise<AljazaraApiResponse> {
   switch (current) {
     case DIRECTUS:
-      return await tryFetch(`/articles?fields=*,photo.*,section_id.*&filter[is_featured][_eq]=true`);
+      return await tryFetch(
+        `/articles?fields=*,photo.filename_disk,photo.description,section_id.title,section_id.title_ar&filter[is_featured][_eq]=true`
+      );
     default:
       return await tryFetch(`/articles`);
   }
