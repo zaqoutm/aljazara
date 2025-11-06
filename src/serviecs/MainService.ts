@@ -36,7 +36,7 @@ export async function loadArticlesBySectionTitle(sectionTitle?: string, limit = 
   switch (current) {
     case DIRECTUS:
       return await tryFetch(
-        `/articles?fields=*,photo.filename_disk,photo.description,section_id.title,section_id.title_ar&filter[section_id][title][_eq]=${sectionTitle}&limit=${limit}&sort=date_created`
+        `/articles?fields=*,photo.filename_disk,photo.description,section_id.title,section_id.title_ar&filter[section_id][title][_eq]=${sectionTitle}&limit=${limit}&sort=-date_created`
       );
     default:
       return await tryFetch(`/articles`);
@@ -47,7 +47,7 @@ export async function loadFeaturedArticles(): Promise<AljazaraApiResponse> {
   switch (current) {
     case DIRECTUS:
       return await tryFetch(
-        `/articles?fields=*,photo.filename_disk,photo.description,section_id.title,section_id.title_ar&filter[is_featured][_eq]=true`
+        `/articles?fields=*,photo.filename_disk,photo.description,section_id.title,section_id.title_ar&filter[is_featured][_eq]=true&sort=-date_created`
       );
     default:
       return await tryFetch(`/articles`);
@@ -62,7 +62,7 @@ export async function getMainArticlesBySection(sectionTitle: string): Promise<Al
   switch (current) {
     case DIRECTUS:
       return await tryFetch(
-        `/articles?fields=*,photo.*&filter[is_main_section][_eq]=true&filter[section_id][title][_eq]=${sectionTitle}&limit=2&sort=date_created`
+        `/articles?fields=*,photo.*&filter[is_main_section][_eq]=true&filter[section_id][title][_eq]=${sectionTitle}&limit=2&sort=-date_created`
       );
     default:
       return await tryFetch(`/articles/2`);

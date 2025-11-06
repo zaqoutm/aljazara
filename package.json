@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "rm -rf .next && next build && node scripts/write-version.js",
     "start": "next start",
     "lint": "next lint"
   },

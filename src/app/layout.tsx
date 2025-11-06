@@ -1,9 +1,11 @@
+import VersionWatcher from '@/utlis/VersionWatcher';
 import type { Metadata } from 'next';
 import { Almarai, Noto_Kufi_Arabic } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
 import FooterComponent from '../components/footer/footer';
 import NavigationComponent from '../components/navigation/navigation';
 import SmallNavigation from '../components/smallNav/page';
+import RouteWatcher from '../utlis/RouteWatcher';
 import './globals.css';
 
 // Fonts
@@ -58,6 +60,8 @@ export default function RootLayout({
         <NextTopLoader speed={800} color='linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff)' showSpinner={false} />
         <SmallNavigation />
         <NavigationComponent />
+        <RouteWatcher />
+        <VersionWatcher />
         <div className='children'>{children}</div>
         <FooterComponent />
       </body>

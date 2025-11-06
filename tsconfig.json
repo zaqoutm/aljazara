@@ -22,6 +22,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/articles/[documentId]", "src/app/page.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/articles/[documentId]",
+    "src/app/page.js",
+    "scripts/write-version.js"
+  ],
   "exclude": ["node_modules"]
 }
