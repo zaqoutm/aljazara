@@ -1,11 +1,22 @@
+/* reserve space on top of the page  */
+.navContainer {
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* flying nav */
 .nav {
   width: 90%;
   min-width: 300px;
   max-width: 400px;
   min-height: 50px;
   color: #000;
-  background-color: rgba(237, 237, 237, 70%);
-  padding: 5px 12px 5px 21px;
+  background-color: rgba(237, 237, 237, 50%);
+  padding: 0 12px 0 21px;
   border-radius: 28px;
   backdrop-filter: blur(10px);
   position: absolute;
@@ -18,7 +29,7 @@
   justify-content: space-between;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
+  height: 50px;
 }
 
 .navTop button {
@@ -26,8 +37,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 34px;
+  padding: 21px 34px;
   height: 100%;
+  /* border: 1px solid; */
 }
 
 .menuButtonBurger {
@@ -40,11 +52,11 @@
 .menuButtonBurger::after,
 .menuButtonBurger::before {
   content: '';
-  width: 18px;
-  height: 2.5px;
+  width: 34px;
+  height: 3px;
   border-radius: 5px;
-  background-color: var(--foreground);
-  transition: all 0.21s ease-in-out;
+  background-color: #1c4162;
+  transition: all 0.1s ease-in-out;
   position: absolute;
 }
 
@@ -61,6 +73,10 @@
 
 .moveBurgers .menuButtonBurger::after {
   transform: rotate(-45deg);
+}
+.menuButtonBurgerOpened::before,
+.menuButtonBurgerOpened::after {
+  background-color: var(--orange);
 }
 
 .homePageLink {
@@ -89,6 +105,9 @@
 .drawerLinks li {
   display: block;
   width: 100%;
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  text-decoration-thickness: 1;
 }
 .drawerLinks li a {
   display: block;
@@ -111,7 +130,6 @@
 .socialLinks {
   padding-top: 8px;
   padding-bottom: 8px;
-  border-top: 1px solid var(--border-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,4 +141,20 @@
   justify-content: center;
   padding: 13px 21px;
   transition: 0.2s all ease-in-out;
+}
+
+@media screen and (min-width: 960px) {
+  .navContainer {
+    display: none;
+  }
+}
+/* <=Tablet */
+@media screen and (max-width: 959px) {
+}
+/* <=phone */
+@media screen and (max-width: 767px) {
+  .navContainer {
+    padding: 20px;
+    padding-bottom: 0;
+  }
 }

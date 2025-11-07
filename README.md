@@ -80,6 +80,11 @@ Try `live-server out` http://127.0.0.1:8080
 
 http://localhost:3000/api/articles/
 
+```sh
+> Node v22.13.1 Maintenance LTS
+> npm 11.4.2
+```
+
 ## License
 
 📄 License MIT License © 2025

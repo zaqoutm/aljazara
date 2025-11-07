@@ -6,6 +6,7 @@
   --light-text: #6161618f;
   --accent: #1991ff;
   --accent-light: #e8f4ff;
+  --accent-light2: rgba(25, 145, 255, 0.05);
   --accent-hover: #49a8ff;
   --info: #49a8ff;
   --success: #4fc62b;
@@ -31,15 +32,6 @@
 /* Media Queries [desktop, small desktop, tablet, phone]*/
 /*  */
 /*  */
-.navContainer {
-  height: 70px;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-}
-
 /*  */
 /*  */
 /*  */
@@ -112,7 +104,7 @@ button {
 }
 
 button:active {
-  transform: translateY(1px);
+  /* transform: translateY(1px); */
   color: #102039;
 }
 
@@ -318,17 +310,10 @@ a:hover {
 /*  */
 /* >= small desktop  */
 @media screen and (min-width: 960px) {
-  .navContainer {
-    display: none;
-  }
 }
 /* <=Tablet */
 @media screen and (max-width: 959px) {
 }
 /* <=phone */
 @media screen and (max-width: 767px) {
-  .navContainer {
-    padding: 20px;
-    padding-bottom: 0;
-  }
 }

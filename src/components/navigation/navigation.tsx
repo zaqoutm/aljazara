@@ -39,11 +39,11 @@ export default function NavigationComponent() {
           className={styles.navBottom}
         >
           <div className={styles.navBottomLinks}>
-            {/* <Link href='/comps'>Components</Link> */}
             {/* <Link href='/articles'>كل المقالات</Link> */}
             <Link href='/business'>المال والأعمال</Link>
             <Link href='/technology'>التكنولوجيا</Link>
             <Link href='/culture'>مقالات تثقيفية</Link>
+            <Link href='/general'>منوعات</Link>
           </div>
         </motion.div>
       </div>
