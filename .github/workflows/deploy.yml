@@ -26,5 +26,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build SSG
-        run: npm run build && npm run postbuild
+      - name: Debug env
+        run: printenv | grep NEXT
+        env:
+          NEXT_PUBLIC_API_PATH: ${{ secrets.NEXT_PUBLIC_API_PATH }}
+
+      # - name: Build SSG
+      #   run: npm run build && npm run postbuild
