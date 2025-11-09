@@ -28,3 +28,18 @@ jobs:
         env:
           NEXT_PUBLIC_API_PATH: ${{ secrets.NEXT_PUBLIC_API_PATH }}
           CURRENT_IMPL: ${{ secrets.CURRENT_IMPL }}
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
+          script: |
+            cd /${{secrets.APP_PATH}}
+            ./run.sh
