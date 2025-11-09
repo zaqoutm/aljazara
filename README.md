@@ -56,7 +56,7 @@ just rename the folder, remove the underscore \_
 
 ```sh
 npm run lint
-npm run build
+npm run build && npm run postbuild
 ```
 
 <div align='center' style="border:0.3px solid #ddd; border-radius:8px; padding: 12px;">
