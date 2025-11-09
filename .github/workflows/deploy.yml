@@ -18,6 +18,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '21'
+        env:
+          NEXT_PUBLIC_API_PATH: ${{ secrets.NEXT_PUBLIC_API_PATH }}
+          CURRENT_IMPL: ${{ secrets.NEXT_PUBLIC_API_PATH }}
 
       - name: Install dependencies
         run: npm install
