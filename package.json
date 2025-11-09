@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "rm -rf .next && next build && node src/scripts/write-version.js",
-    "postbuild": "next-sitemap && cd ../aljazara-server && docker compose restart nginx",
+    "dev": "node src/scripts/write-version.js && next dev --turbopack",
+    "build": "rm -rf .next && next build",
+    "postbuild": "NODE_ENV=production node src/scripts/write-version.js && next-sitemap && cd ../aljazara-server && docker compose restart nginx",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sitemap": "next-sitemap"
   },
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
