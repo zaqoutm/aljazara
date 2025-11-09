@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node src/scripts/write-version.js && next dev --turbopack",
     "build": "rm -rf .next && next build",
-    "postbuild": "NODE_ENV=production node src/scripts/write-version.js && next-sitemap && cd ../aljazara-server && docker compose restart nginx",
+    "postbuild": "NODE_ENV=production node src/scripts/write-version.js && next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "sitemap": "next-sitemap"

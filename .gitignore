@@ -20,6 +20,7 @@
 # generated files after build 
 /public/aljazara-build-version.json
 /public/sitemap-0.xml
+ssh
 
 # production
 /build

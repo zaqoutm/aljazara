@@ -1,0 +1,47 @@
+# .github/workflows/deploy.yml
+name: Build and Deploy aljazara.com
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build SSG
+        run: npm run build && npm run postbuild
+        env:
+          NEXT_PUBLIC_API_PATH: ${{ secrets.NEXT_PUBLIC_API_PATH }}
+          CURRENT_IMPL: ${{ secrets.CURRENT_IMPL }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: Production
+
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
+          script: |
+            cd /${{secrets.APP_PATH}}
+            ./run.sh
