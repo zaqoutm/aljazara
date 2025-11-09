@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "rm -rf .next && next build && node scripts/write-version.js",
+    "build": "rm -rf .next && next build && node src/scripts/write-version.js && cd ../aljazara-server && docker compose restart nginx",
     "start": "next start",
     "lint": "next lint"
   },

@@ -1,6 +1,7 @@
 import VersionWatcher from '@/utlis/VersionWatcher';
 import type { Metadata } from 'next';
 import { Almarai, Noto_Kufi_Arabic } from 'next/font/google';
+import Script from 'next/script';
 import NextTopLoader from 'nextjs-toploader';
 import FooterComponent from '../components/footer/footer';
 import NavigationComponent from '../components/navigation/navigation';
@@ -55,6 +56,23 @@ export default function RootLayout({
             }),
           }}
         />
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function (w, d, s, l, i) {
+              w[l] = w[l] || [];
+              w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+              var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+              j.async = true;
+              j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+              f.parentNode.insertBefore(j, f);
+              })(window, document, 'script', 'dataLayer', 'GTM-NMLFJJ7Z');
+          `,
+          }}
+        />
+        <meta name='google-site-verification' content='v6Pu6IUDS_vV4RttONhoaeRvXbVMmxPqQNnM95LGiGM' />
       </head>
       <body className={`${almarai.variable} ${notoKufi.variable} `}>
         <NextTopLoader speed={800} color='linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff)' showSpinner={false} />
@@ -62,6 +80,15 @@ export default function RootLayout({
         <NavigationComponent />
         <RouteWatcher />
         <VersionWatcher />
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src='https://www.googletagmanager.com/ns.html?id=GTM-NMLFJJ7Z'
+            height='0'
+            width='0'
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
         <div className='children'>{children}</div>
         <FooterComponent />
       </body>
