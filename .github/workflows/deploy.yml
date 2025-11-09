@@ -7,29 +7,30 @@ on:
       - test-cicd
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   environment: Production
+  build:
+    runs-on: ubuntu-latest
+    environment: Production
 
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-  #     - name: Set up Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '22'
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Build SSG
-  #       run: npm run build && npm run postbuild
-  #       env:
-  #         NEXT_PUBLIC_API_PATH: ${{ secrets.NEXT_PUBLIC_API_PATH }}
-  #         CURRENT_IMPL: ${{ secrets.CURRENT_IMPL }}
+      - name: Build SSG
+        run: npm run build && npm run postbuild
+        env:
+          NEXT_PUBLIC_API_PATH: ${{ secrets.NEXT_PUBLIC_API_PATH }}
+          CURRENT_IMPL: ${{ secrets.CURRENT_IMPL }}
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment: Production
 
