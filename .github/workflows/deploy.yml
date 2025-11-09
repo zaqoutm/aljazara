@@ -4,7 +4,7 @@ name: Build and Deploy aljazara.com
 on:
   push:
     branches:
-      - test-cicd
+      - main
 
 jobs:
   build:
