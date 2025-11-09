@@ -1,5 +1,5 @@
 # .github/workflows/deploy.yml
-name: CI/CD
+name: Build and Deploy aljazara.com
 
 on:
   push:
