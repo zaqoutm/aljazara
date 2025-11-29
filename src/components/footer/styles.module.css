@@ -41,3 +41,12 @@
   align-items: center;
   gap: 5px;
 }
+
+.versionComponent {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #1e1e1e;
+  padding: 3px 13px;
+}

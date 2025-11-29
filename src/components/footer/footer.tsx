@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles.module.css';
+import VersionComponent from './VersionComponent';
 
 export default function FooterComponent() {
   return (
@@ -17,6 +18,8 @@ export default function FooterComponent() {
         <Link href='/privacy'>سياسة الخصوصية</Link>
         <Link href='/contact'>اتصل بنا</Link>
       </div>
+
+      <VersionComponent />
     </div>
   );
 }
