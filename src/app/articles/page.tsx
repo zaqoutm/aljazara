@@ -20,5 +20,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Articles() {
-  return <></>;
+  return (
+    // todo
+    <div>
+      <h1>view all articles here! pages</h1>
+    </div>
+  );
 }

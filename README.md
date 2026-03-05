@@ -19,31 +19,62 @@ cd aljazara
 npm install
 ```
 
-## # Run with "Directus" app
+## Data
 
-1. We need Directus app running `https://your-api-url`
-2. Set .env variables
+`default` faker
 
-`NEXT_PUBLIC_API_PATH=http://localhost:8055/items`
-`CURRENT_IMPL=directus`
+#### 1. faker js
 
-3. Update next.config.ts remove `output: 'export'`, or just comment it out `//`
+- enable app route `/src/app/_api` to `.../api`
+- disable `output: 'export'` in `next.config`
 
-> npm run dev http://localhost:3000/
+#### 2. Markdown files
 
-## # Try with `fakerjs`
+md files in the root dir
+`/data/posts/`
 
-1. Enable app route `/src/app/_api` to `.../api`
+organized by date
 
-just rename the folder, remove the underscore \_
+```sh
+- 2025
+  - 01
+    - first-post
+      - index.md
+    ....
+  - 02
+- 2026
+```
 
-2. `next.config.ts` disable `output: 'export'`
+index.md structure
 
-> npm run dev http://localhost:3000/
+```md
+---
+title: 'Hello world'
+date: '2026-01-03'
+excerpt: 'description or second title'
+category: 'tech'
+tags: ['tag1', 'tag2']
+---
+
+the rest of the article
+```
+
+#### 3. Run with "Directus cms"
+
+- we need Directus app running `https://your-api-url`
+
+- `.env`
+
+```sh
+ NEXT_PUBLIC_API_PATH=http://localhost:8055/items
+ CURRENT_IMPL=directus
+```
+
+- update next.config.ts remove `output: 'export'`, or just comment it out `//`
 
 <br/>
 
-# 👷‍♀️ Build .ssg
+# 👷‍♀️ Build
 
 (SSG) Static Site Generation
 
@@ -70,22 +101,26 @@ Try `live-server out` http://127.0.0.1:8080
 
 # 🛠️ Tech stack
 
-- ▲ Next.js 15.1.6
-- React 19
-- motion
-- fakerjs
-- moment
-
-`src/app/api/articles/route.ts`
-
-http://localhost:3000/api/articles/
-
 ```sh
 > Node v22.13.1 Maintenance LTS
 > npm 11.4.2
 ```
 
-## License
+- ▲ Next.js 15.1.6
+- React 19
+- motion
+- fakerjs
+- moment
+- gray-matter
+- html-react-parser
+- rehype-external-links
+- rehype-raw
+- rehype-stringify
+- remark
+- remark-html
+- remark-rehype
+
+# License
 
 📄 License MIT License © 2025
 📬 Contact Email: mo.zaqout@gmail.com

@@ -1,0 +1,22 @@
+.main {
+  max-width: 800px;
+  margin-inline: auto;
+  padding-top: 51px;
+  /* direction: ltr; */
+}
+
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 13px;
+  padding: 13px;
+}
+
+.noArticle {
+  color: red;
+}
+
+.title {
+  color: turquoise;
+  font-weight: bold;
+}

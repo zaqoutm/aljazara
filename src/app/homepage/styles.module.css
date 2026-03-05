@@ -1,0 +1,32 @@
+.main {
+  background-color: #f2f2f2;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 21px;
+}
+
+.post {
+  border: 1px solid #ccc;
+  margin-bottom: 21px;
+  background-color: #fff;
+  padding: 13px;
+  border-radius: 13px;
+}
+
+.linkFrame {
+  border: 1px solid red;
+  overflow: hidden;
+  width: 500px;
+}
+.linkFrame a {
+  display: flex;
+  pointer-events: all;
+  border: 1px solid;
+}
+
+.linkFrame iframe {
+  width: 100%;
+  pointer-events: none;
+  border: none;
+  margin: 0;
+}

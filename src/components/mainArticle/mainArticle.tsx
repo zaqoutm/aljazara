@@ -2,9 +2,10 @@ import { AljazaraArticle } from '@/serviecs/AljazaraArticle';
 import Link from 'next/link';
 import CustomImage from '../CustomImage/page';
 import styles from './styles.module.css';
+import { AljazaraArticleMd } from '@/serviecs/AljazaraArticleMd';
 
 interface MainArticleProps {
-  article: AljazaraArticle;
+  article: AljazaraArticleMd;
   flexibleSize?: boolean;
 }
 
@@ -16,13 +17,19 @@ export default function MainArticle(props: MainArticleProps) {
   return (
     <Link href={`/articles/${article.slug}`} className={`${styles.main} ${props.flexibleSize && styles.sizeFlix}`}>
       {/* iamge */}
-      <div className={styles.imageContainer}>
-        <CustomImage title={article.photo?.title} filename_disk={article.photo?.filename_disk} />
+      {/*<div className={styles.imageContainer}></div>*/}
+
+      <div className='post-cover'>
+        <iframe src={article.image} width={'100%'} />
+        {/*<CustomImage title={article.imageTitle} filename_disk={article.image} />*/}
       </div>
+
       {/*  */}
       {/* article title */}
       <div className={styles.titleContainer}>
         <h1>{article.title}</h1>
+        <p>{article.excerpt}</p>
+
         {/* {article.section ? <p className={styles.badge}>{article.section?.titleAr}</p> : ''} */}
         {/* <p>{moment(article.createdAt).fromNow()}</p> */}
 

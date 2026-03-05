@@ -12,7 +12,8 @@ import { notFound } from 'next/navigation';
 import SocialLinks from './social_links';
 import styles from './styles.module.css';
 
-//
+// at build time for each article the component rendering.
+// todo: use cache in production
 export async function generateStaticParams() {
   const articles = await loadAllItems();
   return articles.data.map((article: AljazaraArticle) => ({

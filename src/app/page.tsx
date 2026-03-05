@@ -6,6 +6,7 @@ import { AljazaraApiResponse } from '@/serviecs/AljazaraApiResponse';
 import { loadArticlesBySectionTitle, loadFeaturedArticles, loadMainArticle } from '@/serviecs/MainService';
 import * as motion from 'motion/react-client';
 import styles from './page.module.css';
+import { AljazaraArticleMd } from '@/serviecs/AljazaraArticleMd';
 
 export const metadata = {
   title: 'Aljazara – الأخبار والمقالات',
@@ -22,7 +23,7 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const mainArticlesResponse: AljazaraApiResponse = await loadMainArticle();
+  const mainArticlesResponse: AljazaraArticleMd = await loadMainArticle();
   const businessArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('business');
   const techArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('technology');
   const cultureArticlesResponse: AljazaraApiResponse = await loadArticlesBySectionTitle('culture');
@@ -32,13 +33,13 @@ export default async function Home() {
     <main className={styles.page}>
       {/* switcher on < tablet */}
       <div className={styles.switcher}>
-        <HomePageSwitcher
-          business={businessArticlesResponse}
-          tech={techArticlesResponse}
-          cult={cultureArticlesResponse}
-          fratured={featuredArticlesRes}
-          main={mainArticlesResponse.data[0]}
-        />
+        {/*<HomePageSwitcher*/}
+        {/*  business={businessArticlesResponse}*/}
+        {/*  tech={techArticlesResponse}*/}
+        {/*  cult={cultureArticlesResponse}*/}
+        {/*  fratured={featuredArticlesRes}*/}
+        {/*  main={mainArticlesResponse.data[0]}*/}
+        {/*/>*/}
 
         {/* TODO: skeleton */}
       </div>
@@ -56,7 +57,7 @@ export default async function Home() {
             }}
           >
             {/* main article */}
-            {mainArticlesResponse ? <MainArticle article={mainArticlesResponse.data[0]} /> : 'Loading main article'}
+            {mainArticlesResponse ? <MainArticle article={mainArticlesResponse} /> : 'Loading main article'}
           </motion.div>
 
           {/* business */}

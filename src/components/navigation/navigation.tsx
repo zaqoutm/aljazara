@@ -40,6 +40,8 @@ export default function NavigationComponent() {
         >
           <div className={styles.navBottomLinks}>
             {/* <Link href='/articles'>كل المقالات</Link> */}
+            <Link href='/testmd'>Test md</Link>
+            <Link href='/homepage'>Home page</Link>
             <Link href='/business'>المال والأعمال</Link>
             <Link href='/technology'>التكنولوجيا</Link>
             <Link href='/culture'>مقالات تثقيفية</Link>
